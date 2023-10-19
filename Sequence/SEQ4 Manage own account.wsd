@@ -4,4 +4,18 @@ hide footbox
 scale 3
 skinparam MaxMessageSize 200
 
+actor "User" as user
+boundary "User Interface Class" as UIClass
+entity "User Class" as userClass
+
+autonumber 
+    user++
+    user -> UIClass ++: Request information of current user
+    UIClass -> userClass ++: Get information
+    userClass -> UIClass --: Respond information
+    UIClass -> user --: Show information
+    user -> UIClass ++: Update information
+    UIClass -> userClass ++: Request update
+    userClass -> UIClass --: Result message
+    UIClass -> user --: Show result message
 @enduml

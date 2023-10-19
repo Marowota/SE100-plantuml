@@ -5,10 +5,19 @@ scale 3
 skinparam MaxMessageSize 200
 
 actor "User" as user 
-actor "User Interface Class" as UIClass
-actor "User Class" as User
+boundary "User Interface Class" as UIClass
+entity "User Class" as userClass
 
 autonumber
-    
-
+    user++
+    user -> UIClass ++: Login to the system
+    UIClass -> userClass ++: Request authentication
+    alt correct information
+        userClass -> UIClass : Give access to the system
+        UIClass -> user : Show Accessed UI
+    else incorrect information
+        autonumber 3
+        userClass -> UIClass --: Return error message
+        UIClass -> user --: Show error message
+    end
 @enduml
