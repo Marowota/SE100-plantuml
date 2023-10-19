@@ -1,4 +1,4 @@
-@startuml
+@startuml SEQ4 Manage own account
 skin rose
 hide footbox
 scale 3
