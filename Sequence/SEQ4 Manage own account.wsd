@@ -1,0 +1,7 @@
+@startuml
+skin rose
+hide footbox
+scale 3
+skinparam MaxMessageSize 200
+
+@enduml

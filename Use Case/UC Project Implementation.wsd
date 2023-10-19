@@ -1,0 +1,13 @@
+@startuml UC Project Implementation
+skin rose
+left to right direction
+  actor Student as s
+rectangle "Project implemetation" {
+  usecase "Register project" as AssignToProject
+  usecase "Create additional registration" as CreateAdditionalAssign
+  usecase "Submit project" as SubmitProject
+}
+s -- AssignToProject
+s -- SubmitProject
+AssignToProject <.. CreateAdditionalAssign : <<extend>>
+@enduml

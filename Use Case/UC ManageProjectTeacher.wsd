@@ -1,0 +1,14 @@
+@startuml UC ManageProjectTeacher
+left to right direction
+actor Teacher as t
+rectangle "Manage project (teacher)" {
+  usecase "Update project additional/requirement information" as UpdateProjectAdditionalInformation
+  usecase "Create custom project" as CreateCustomProject
+  usecase "Update project status" as UpdateProjectStatus
+  usecase "Project full: max students" as ProjectFull 
+}
+t -- UpdateProjectAdditionalInformation
+t -- CreateCustomProject
+t -- UpdateProjectStatus
+UpdateProjectStatus <.. ProjectFull: <<extend>>
+@enduml

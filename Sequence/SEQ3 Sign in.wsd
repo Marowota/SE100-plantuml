@@ -1,0 +1,14 @@
+@startuml SEQ3 Signin
+skin rose
+hide footbox
+scale 3
+skinparam MaxMessageSize 200
+
+actor "User" as user 
+actor "User Interface Class" as UIClass
+actor "User Class" as User
+
+autonumber
+    
+
+@enduml

@@ -1,0 +1,45 @@
+@startuml SEQ5 CRUD announcement(teacher)
+skin rose
+hide footbox
+scale 3
+skinparam MaxMessageSize 200
+
+actor "Teacher" as teacher
+boundary "User Interface Class" as UIClass
+entity "Announcement Class" as announcement
+
+autonumber
+    teacher ++
+    teacher -> UIClass ++: Access announcement list
+    UIClass -> announcement ++: Get list announcement
+    announcement -> UIClass --: Respond list announcement
+    UIClass -> teacher --: Show list announcement
+    
+
+    opt Create new announcement
+        teacher -> UIClass ++: Send new information
+        UIClass -> announcement ++: Request add infromation
+        announcement -> UIClass --: Respond add result
+        UIClass -> teacher --: Show add result
+    end
+
+    opt Modify announcement
+        autonumber 5
+        teacher -> UIClass ++: Show detail of information
+        UIClass -> announcement ++: Get detail information
+        announcement -> UIClass --: Respond detail information
+        UIClass -> teacher --: Show detail information
+        teacher -> UIClass ++: Send new information
+        UIClass -> announcement ++: Request change infromation
+        announcement -> UIClass --: Respond change result
+        UIClass -> teacher --: Show changed result
+    end
+
+    opt Delete announcement
+        autonumber 5
+        teacher -> UIClass ++: Send information about the student have to delete
+        UIClass -> announcement ++: Request delete infromation
+        announcement -> UIClass --: Respond delete result
+        UIClass -> teacher --: Show deleted result
+    end
+@enduml

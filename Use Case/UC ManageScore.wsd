@@ -1,0 +1,11 @@
+@startuml UC ManageScore
+skin rose
+left to right direction
+actor "Academic affair" as aff
+rectangle "Manage student score" {
+  usecase "View score" as ViewScore
+  usecase "Export report" as ExportScore
+}
+aff --> ViewScore
+aff --> ExportScore
+@enduml

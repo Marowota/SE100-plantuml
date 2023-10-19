@@ -1,0 +1,13 @@
+@startuml UC ManageProject
+skin rose
+left to right direction
+actor "Academic affair" as aff
+rectangle "Manage project" {
+  usecase "Upload list of project" as UploadListOfProject
+  usecase "View list student can assign project" as ViewListStudentCanAssignProject
+  usecase "CRUD project" as CRUDProject
+}
+aff -- UploadListOfProject
+aff -- ViewListStudentCanAssignProject
+aff -- CRUDProject
+@enduml

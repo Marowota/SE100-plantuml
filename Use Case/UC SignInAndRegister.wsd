@@ -1,0 +1,19 @@
+@startuml UC SignInAndRegister
+skin rose
+left to right direction
+  actor Student as s
+  actor Teacher as t
+  actor "Academic affair" as aff
+rectangle "Sign in" {
+  usecase "Sign in" as SignIn
+  usecase "Sign in with email" as SignInWithEmail
+  usecase "Wrong email" as WrongEmail
+  usecase "Wrong password" as WrongPassword
+}
+s --- SignIn
+SignIn ..> SignInWithEmail: <<include>>
+SignIn <.. WrongEmail: <<extend>>
+SignIn <.. WrongPassword: <<extend>>
+aff --> s
+t --> s
+@enduml

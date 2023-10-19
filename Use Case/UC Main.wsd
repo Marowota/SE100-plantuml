@@ -1,0 +1,41 @@
+@startuml UC Main
+skin rose 
+left to right direction
+actor Admin as a
+actor Student as s
+actor "Academic affair" as aff
+actor Teacher as t
+rectangle "Project Management System" {
+  usecase "Manage account" as ManageAccount
+  usecase "Sign in" as Signin
+  usecase "Manage analyze&report infomation" as ManageAnalyze
+  usecase "Manage announcement" as ManageNotes <<crud>>
+  usecase "Manage announcement (teacher)" as ManageNotesTeacher <<crud>>
+  usecase "Manage project" as ManageProject
+  usecase "Manage project (teacher)" as ManageProjectTeacher
+  usecase "Manage student score" as ManageStudentScore
+  usecase "Manage own account" as ManageOwnAccount
+  usecase "View announcement" as ViewNotes
+  usecase "Implement project" as ImplementProject
+  usecase "View team score" as ViewTeamScore
+  usecase "View & Submit student score" as ViewAndSubmitStudentScore
+}
+
+ManageAccount --- a
+Signin ----- s
+ManageOwnAccount ----- s
+aff --- ManageOwnAccount
+t ----- ManageOwnAccount
+aff --- ManageAnalyze
+aff ---- ManageNotes
+t ----- ManageNotesTeacher
+aff ---ManageProject
+ImplementProject ----- s
+t ----- ManageProjectTeacher
+ViewNotes ----- s
+aff --- ManageStudentScore
+ViewTeamScore ----- s
+t ----- ViewAndSubmitStudentScore
+t ----- Signin
+aff --- Signin
+@enduml

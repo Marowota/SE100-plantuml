@@ -1,0 +1,45 @@
+@startuml SEQ2 CRUD announcement
+skin rose
+hide footbox
+scale 3
+skinparam MaxMessageSize 200
+
+actor "Academic Affair" as AA
+boundary "User Interface Class" as UIClass
+entity "Announcement Class" as announcement
+
+autonumber
+    AA ++
+    AA -> UIClass ++: Access announcement list
+    UIClass -> announcement ++: Get list announcement
+    announcement -> UIClass --: Respond list announcement
+    UIClass -> AA --: Show list announcement
+    
+
+    opt Create new announcement
+        AA -> UIClass ++: Send new information
+        UIClass -> announcement ++: Request add infromation
+        announcement -> UIClass --: Respond add result
+        UIClass -> AA --: Show add result
+    end
+
+    opt Modify announcement
+        autonumber 5
+        AA -> UIClass ++: Show detail of information
+        UIClass -> announcement ++: Get detail information
+        announcement -> UIClass --: Respond detail information
+        UIClass -> AA --: Show detail information
+        AA -> UIClass ++: Send new information
+        UIClass -> announcement ++: Request change infromation
+        announcement -> UIClass --: Respond change result
+        UIClass -> AA --: Show changed result
+    end
+
+    opt Delete announcement
+        autonumber 5
+        AA -> UIClass ++: Send information about the student have to delete
+        UIClass -> announcement ++: Request delete infromation
+        announcement -> UIClass --: Respond delete result
+        UIClass -> AA --: Show deleted result
+    end
+@enduml

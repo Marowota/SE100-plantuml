@@ -1,0 +1,55 @@
+@startuml List Feature
+skin rose
+left to right direction
+actor Admin as a
+actor Student as s
+actor "Academic affair" as aff
+actor Teacher as t
+rectangle "Manage analyze&report infomation" {
+  usecase "(4) View & Save analyze information" as ViewAndSaveAnalyzeInformation
+  usecase "(25) General analyze/report" as GeneralAnalyzeReport
+}
+
+rectangle "Manage notification" {
+  usecase "(3) View notification" as ViewNotification
+  usecase "(5) Send notification" as SendNotification
+  usecase "(13) Send custom notification" as SendCustomNotification
+}
+
+rectangle "Manage notification (teacher)" {
+  usecase "(3) View notification" as ViewNotification2
+  usecase "(13) Send custom notification" as SendCustomNotification2
+  usecase "(16) Chooose notification range" as ChooseNotificationRange
+}
+
+rectangle "Manage project" {
+  usecase "(6) Upload list of project" as UploadListOfProject
+  usecase "(7) Open list subject" as OpenListSubject
+  usecase "(8) View list student can assign subject" as ViewListStudentCanAssignSubject
+  usecase "(9) Update project information" as UpdateProjectInformation
+  usecase "(18) Manage list student in project" as ManageListStudentInProject
+  usecase "(19) Create project due date" as CreateProjectDueDate
+  usecase "(24) CRUD project" as CRUDProject
+}
+
+rectangle "Manage project (teacher)" {
+  usecase "(11) Update project additional information" as UpdateProjectAdditionalInformation
+  usecase "(11) Create custom project" as CreateCustomProject
+  usecase "(12) Update project status" as UpdateProjectStatus
+}
+
+rectangle "Manage student score" {
+  usecase "(22) View score" as ViewScore
+  usecase "(23) Export score table" as ExportScoreTable
+}
+usecase "(1) Account & Role Management" as AccountAndRoleManagement
+usecase "(2) Sign in & Register" as SigninAndRegister
+usecase "(3) Manage own account" as ManageOwnAccount
+usecase "(3) View notification" as ViewNotification3
+usecase "(10) Assign to project" as AssignToProject
+usecase "(14) Creation additional project assign" as CreateAdditionalProjectAggsign
+usecase "(15) Check additional project assgin" as CheckAdditionalPeojectAssign
+usecase "(17) Submit project" as SubmitProject
+usecase "(21) View team score" as ViewTeamScore
+usecase "(20) View & Submit student score" as ViewAndSubmitStudentScore
+@enduml

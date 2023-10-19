@@ -1,0 +1,56 @@
+@startuml SEQ1 Manage account & role
+skin rose
+hide footbox
+scale 3
+
+title "Manage account & role"
+actor "Administrator" as admin
+boundary "User Interface Class" as UIClass
+control "Manage Account Class" as manageAccount
+entity "User Class" as userClass
+
+
+autonumber
+    admin ++
+    admin -> UIClass ++: Open list account
+    UIClass -> manageAccount ++: Send view account request
+    manageAccount -> userClass ++: Get list account
+    userClass -> manageAccount --: Return list account
+    manageAccount -> UIClass --: Return list account
+    UIClass -> admin --: View list account
+
+    opt Admin choice: Add userClass
+        admin -> UIClass ++: Request add
+        UIClass -> admin --: Show the information need to fill
+        admin -> UIClass ++: Fill and respond the information
+        UIClass -> manageAccount ++: Send new userClass information
+        manageAccount -> userClass ++: Request add new userClass
+        userClass -> manageAccount --: Respond add result
+        manageAccount -> UIClass --: Respond and result
+        UIClass -> admin --: show add result
+    end
+    opt admin choice: Modify userClass
+        autonumber 7
+        admin -> UIClass ++: Request userClass detail
+        UIClass -> admin --: Respond userClass detail
+        loop information not valid or unfilled information
+            admin -> UIClass ++: Send changed information
+            UIClass -> manageAccount ++: Request change userClass detail
+            manageAccount -> userClass ++: Request change userClass detail
+            userClass -> manageAccount --: Respond change result
+            manageAccount -> UIClass --: Respond change result
+            UIClass -> admin --: Show change result
+        end
+    end
+    opt admin choice: Delete userClass
+        autonumber 7
+        admin -> UIClass ++: Choose account to delete
+        UIClass -> manageAccount ++: Request delete account
+        manageAccount -> userClass ++: Request delete account
+        userClass -> manageAccount --: Respond delete account result
+        manageAccount -> UIClass --: Respond delete account result
+        UIClass -> admin --: Show delete account result
+    end
+
+
+@enduml
