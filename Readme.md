@@ -1,10 +1,9 @@
 # SE Survival diagram list
----
+
 ## This is the repository contain multiple use case diagram for project: "Project Manage System (Project1 & 2).
 
 Draw using plantuml
 
----
 ## How to install plantuml for VSCode
 
 Step 1: Install PlantUML extension
