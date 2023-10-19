@@ -1,6 +1,6 @@
 # SE Survival diagram list
 ---
-## This is the repository for multiple use case diagram for project: "Project Manage System (Project1 & 2).
+## This is the repository contain multiple use case diagram for project: "Project Manage System (Project1 & 2).
 
 Draw using plantuml
 
