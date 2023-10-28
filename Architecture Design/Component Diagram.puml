@@ -1,0 +1,27 @@
+@startuml Comnponent Diagram
+
+skin rose
+scale 3
+
+node "Client" as client <<device>> {
+    component "Web browser" as component <<component>> {
+        
+    }
+}
+node "Web Server" as server <<device>> {
+    node "Node.js" as nodejs <<execution environment>> {
+        node "Express.js Application" as expressjs {
+            
+        }
+    }
+
+}
+node "Database Server" as database {
+    component "MySQL Server" as mysql
+}
+
+
+
+
+@enduml
+ 

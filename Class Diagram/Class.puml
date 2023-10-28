@@ -1,0 +1,102 @@
+@startuml Class Diagram
+
+skin rose
+skinparam classAttributeIconSize 0
+hide circle
+
+class User {
+    # Email
+    # Name
+    # Password
+
+    + Login(string, string)
+    + ViewProfile()
+    + EditProfile(User)
+}
+
+class ManageAccount {
+    + Add Account()
+    + View Account()
+    + Modify Account()
+    + Delete Account()
+}
+
+class Admin {
+
+}
+
+class AcademicAffair {
+
+}
+
+class Student {
+    - StudentId
+    + ViewStudentList()
+    + AddStudent()
+    + ModifyStudent()
+    + DeleteStudent()
+    + ViewStudentScore()
+    + UpdateStudentScore()
+    + SubmitStudentScore()
+}
+
+class Teacher {
+
+}
+
+class Announcement {
+    - Content
+    - TargetUser
+    + SendAnnouncement()
+    + ViewAnnouncement()
+}
+
+class ReportInformation {
+    - Content
+    + ViewInformatioon()
+    + SaveInformation()
+    + AnalyzeProjectInformation(Project)
+    + AnalyzeReport(ReportInformation)
+}
+
+class Project {
+    - ProjectName
+    - Teacher
+    - Requirement
+    - MaxStudentNumber
+    - ProjectType
+    + ViewListProject()
+    + RegisterProject()
+    + ViewTeamScore()
+    + SubmitProject()
+}
+
+class ManageProject {
+    + CreateProject()
+    + UpdateProject()
+    + DeleteProject()
+}
+
+class ManageProjectForTeacher {
+    + UpdateProject(Project,Project)
+    + CreateCustomProject(Project)
+}
+
+User <-- Admin
+User <-- AcademicAffair
+User <-- Student
+User <-- Teacher
+
+ManageAccount -- Admin
+ManageAccount -- User
+AcademicAffair --- ReportInformation
+AcademicAffair --- Announcement
+AcademicAffair -- ManageProject
+Student -- Project
+Teacher -- Student
+Teacher -- ManageProjectForTeacher
+ManageProject -- Project
+ManageProjectForTeacher -- Project
+
+
+@enduml
