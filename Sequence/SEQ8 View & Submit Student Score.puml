@@ -1,0 +1,37 @@
+@startuml SEQ8 View & Submit Student's Score
+skin rose
+hide footbox
+scale 4
+
+title "View & Submit Student's Score"
+actor "Teacher" as teacher
+boundary "User Interface Class" as UIClass
+entity "Student Class" as studentClass
+
+autonumber 
+    teacher ++
+    teacher -> UIClass ++: Navigate to the student section
+    UIClass -> studentClass ++: Request to view the list of students enrolled in the selected course
+    studentClass -> UIClass --: Return the student score
+    UIClass -> teacher --:  Display a student list for teacher
+    teacher -> UIClass ++: Navigate to student score in student section
+    UIClass -> teacher --: Display a student score list for teacher
+    teacher -> UIClass ++: Choose student
+
+        opt Teacher choice: submit student's score
+        teacher -> UIClass ++: Request to submit student's score
+        UIClass -> teacher --: Display a form for teacher to fill in the student's score
+        teacher -> UIClass ++: Teacher fill in the student's score and apply
+        UIClass -> studentClass ++: Request to update the student's score status
+        studentClass -> UIClass --: Update the student's score
+        UIClass -> teacher --: Display the student's score on the user interface
+        end
+
+        opt Teacher choice: View student's score
+        autonumber 8
+        teacher -> UIClass ++: Request to show student's score
+        UIClass -> studentClass ++: Request to view the student's score
+        studentClass -> UIClass --: Return the student's score
+        UIClass -> teacher --: Display the student's score on the user interface
+        end
+@enduml

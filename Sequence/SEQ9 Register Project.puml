@@ -1,0 +1,49 @@
+@startuml SEQ9 Register Project
+skin rose 
+scale 3
+hide footbox
+
+title Register Project
+actor "Student" as student
+boundary "User Interface Class" as UIClass
+control "Manage Project Class" as managePj
+entity "Project Class" as pjClass
+
+autonumber 
+    student ++
+    student -> UIClass ++: Navigate to the register project section
+    UIClass -> managePj ++: Request to view the project list
+    managePj -> pjClass ++: Get the project list that still not be registered
+    pjClass -> managePj --: Return the project list that still not be registered
+    managePj -> UIClass --: Return the project list that still not be registered
+    UIClass -> student --: Display the project list for user
+
+        opt Student choice: register project
+        student -> UIClass ++: Choose a project to register
+        UIClass -> student --: Display a form for student to fill in the information
+        student -> UIClass ++: Student fill in the information and apply the form
+        UIClass -> managePj ++: Request to update the project's status to regitered
+        managePj -> pjClass ++: Update the project's status to registered in the system
+        pjClass -> managePj --: Update the project's status to registered
+        managePj -> UIClass --: Update the project's status to registered
+        UIClass -> student --: Display a success register message
+        end
+
+        opt Student choice: update project
+        autonumber 7
+        student -> UIClass ++: Cancel the registered project
+        UIClass -> managePj ++: Request to update the project's status to cancelled
+        managePj -> pjClass ++: Update the project's status to cancelled in the system
+        pjClass -> managePj --: Update the project's status to cancelled
+        managePj -> UIClass --: Update the project's status to cancelled
+        UIClass -> student --: Display a success cancel project message
+        student -> UIClass ++: Choose a project to register
+        UIClass -> student --: Display a form for student to fill in the information
+        student -> UIClass ++: Student fill in the information and apply the form
+        UIClass -> managePj ++: Request to update the project's status to regitered
+        managePj -> pjClass ++: Update the project's status to registered in the system
+        pjClass -> managePj --: Update the project's status to registered
+        managePj -> UIClass --: Update the project's status to registered
+        UIClass -> student --: Display a success register message
+        end
+@enduml

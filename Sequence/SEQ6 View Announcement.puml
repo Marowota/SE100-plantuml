@@ -1,0 +1,18 @@
+@startuml SEQ6 View Announcement
+skin rose
+hide footbox
+scale 3
+
+title "View Announcement" 
+actor "Student" as student
+boundary "User Interface Class" as UIClass
+entity "Announcement Class" as announcementClass
+
+autonumber
+    student ++
+    student -> UIClass ++: Navigate to the announcement section.
+    UIClass -> announcementClass ++: Request to view the announcement.
+    announcementClass -> UIClass --: Return the announcement's content that is chose.
+    UIClass -> student --: Display the announcement's content.
+
+@enduml

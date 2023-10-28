@@ -1,0 +1,18 @@
+@startuml SEQ7 View Student's Score
+skin rose
+hide footbox
+scale 3
+
+title "View Student's Score" 
+actor "Student" as student
+boundary "User Interface Class" as UIClass
+entity "Student Class" as studentClass
+
+autonumber
+    student ++
+    student -> UIClass ++: Navigate to the student section.
+    UIClass -> studentClass ++: Request to view the list of student enrolled in the selected course.
+    studentClass -> UIClass --: Return the student's score.  
+    UIClass -> student --: Display the student's score for student.
+
+@enduml

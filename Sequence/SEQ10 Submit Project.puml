@@ -1,0 +1,29 @@
+@startuml SEQ10 Submit Project
+skin rose 
+scale 4
+hide footbox
+
+title Submit Project
+actor "Student" as student
+boundary "User Interface Class" as UIClass
+control "Manage Project Class" as managePj
+entity "Project Class" as pjClass
+
+autonumber 
+    student ++
+    student -> UIClass ++: Navigate to the register project section
+    UIClass -> managePj ++: Request to view the project list
+    managePj -> pjClass ++: Get the project list
+    pjClass -> managePj --: Return the project list
+    managePj -> UIClass --: Return the project list
+    UIClass -> student --: Display the project list for user
+    student -> UIClass ++: Choose a project to submit
+    UIClass -> student --: Display a form for student to fill in the information
+    student -> UIClass ++: Student fill in the information and apply the form
+    UIClass -> managePj ++: Request to apply the project
+    managePj -> pjClass ++: Apply the project to the system
+    pjClass -> managePj --: Update the project's status to submitted
+    managePj -> UIClass --: Update the project's status to submitted
+    UIClass -> student --: Display a success submit message
+
+@enduml
