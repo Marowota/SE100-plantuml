@@ -4,22 +4,28 @@ skin rose
 scale 3
 
 node "Client" as client <<device>> {
-    component "Web browser" as component <<component>> {
+    component "Web browser" as webBrowser <<component>> {
         
     }
 }
+
 node "Web Server" as server <<device>> {
     node "Node.js" as nodejs <<execution environment>> {
         node "Express.js Application" as expressjs {
-            
+            component "Project Management System" as PMS
         }
+        component "Data Access" as dataAccess
     }
 
 }
-node "Database Server" as database {
-    component "MySQL Server" as mysql
+
+node "Database Server" as database <<device>>{
+    component "MySQL Server" as mysql <<database>>
 }
 
+webBrowser -- nodejs: http
+PMS -- dataAccess
+mysql -- dataAccess
 
 
 
