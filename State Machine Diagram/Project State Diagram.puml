@@ -1,0 +1,29 @@
+@startuml ProjectStateDiagram
+skin rose
+hide empty description
+scale 6
+
+[*] --> Draft : Create Project
+Draft --> UnderReview : Confirm Creation
+Draft --> Discarded : Cancel Creation
+UnderReview --> Discarding: Discard Project
+UnderReview --> Updating : Update Project
+Updating --> UnderReview : Complete Update
+Discarding --> Discarded : Confirm Discard
+Discarding --> UnderReview : Cancel Discard
+UnderReview --> ReadyToBeRegistered : Complete Review
+ReadyToBeRegistered --> Registered : Register Project
+Registered --> InProgress : Implement Project
+InProgress --> Completed : Complete Project
+InProgress --> OnHold : Put Project\nOn Hold
+OnHold --> InProgress : Resume Project
+Discarded --> [*]
+Completed --> [*]
+
+state Updating {
+    [*] --> Updated : Confirm\nUpdate Project
+    Updated --> [*]
+    [*] --> Unupdated : Cancel\nUpdate Project
+    Unupdated --> [*]
+}
+@enduml
