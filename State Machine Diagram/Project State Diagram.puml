@@ -3,6 +3,10 @@ skin rose
 hide empty description
 scale 6
 
+title Project State Machine Diagram
+
+[*] --> Draft : Create Project
+
 [*] --> Draft : Create Project
 Draft --> UnderReview : Confirm Creation
 Draft --> Discarded : Cancel Creation
