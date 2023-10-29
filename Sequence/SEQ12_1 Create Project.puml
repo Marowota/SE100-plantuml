@@ -1,0 +1,39 @@
+@startuml CreateProject
+skin rose
+hide footbox
+scale 5
+
+title "Create project"
+actor "Academic affair" as aa
+boundary ": User Interface\nClass" as ui
+control ": Manage Project\n Class" as mp
+entity ": Project\nClass" as p
+autonumber
+aa ++
+aa -> ui ++: Choose "Create project" feature
+ui -> mp ++: Request create project
+mp -> ui: Request project information
+ui -> aa --: Display project information input interface
+aa -> ui ++: Enter project information
+ui -> aa: Require confirmation
+alt Confirmation not confirmed
+  aa -> ui: Refuse to confirm
+  ui -> aa --: Display old project list
+else Confirmation confirmed
+  autonumber 7
+  aa -> ui ++: Accept to confirm
+  ui -> mp: Transfer data
+  mp -> mp: Validate data
+  alt Empty/Invalid data
+    mp -> ui: Return message error
+    ui -> aa --: Display message error
+  else Valid data
+    autonumber 10
+    mp -> p ++: Create new project
+    p -> mp --: Return new project list
+    mp -> ui --++: Return new project list
+    ui -> aa --: Display new project list
+  end
+end
+aa --
+@enduml

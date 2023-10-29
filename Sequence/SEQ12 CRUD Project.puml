@@ -1,0 +1,35 @@
+@startuml CRUDProject
+skin rose
+hide footbox
+scale 5
+
+title "CRUD project"
+actor "Academic affair" as aa
+boundary ": User Interface\nClass" as ui
+control ": Manage Project\n Class" as mp
+entity ": Project\nClass" as p
+autonumber
+aa ++
+aa -> ui ++: Access project list
+ui -> mp ++: Request project list
+mp -> p ++: Get project list
+p -> mp --: Return project list
+mp -> ui --: Return project list
+ui -> aa --: Display project list
+opt Actor choice: Create project
+  ref over aa, ui, mp, p
+    Create project
+  end ref
+end
+opt Actor choice: Update project
+  ref over aa, ui, mp, p
+    Update project
+  end ref
+end
+opt Actor choice: Create project
+  ref over aa, ui, mp, p
+    Update project
+  end ref
+end
+aa --
+@enduml
