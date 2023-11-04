@@ -1,0 +1,83 @@
+@startuml ACT Manage account & role
+skin rose
+!pragma useVerticalIf on
+scale 3
+
+|Admin|
+start
+    :Open list account;
+    |UI|
+    :Send view account request;
+    |Manage Account|
+    :Get list account;
+    |User Class|
+    :Return list account;
+    |Manage Account|
+    :Return list account;
+    |UI|
+    :View list account;
+    |Admin|
+    if (Admin choice) is (Add user) then
+        |Admin|
+        :Request add;
+        |UI|
+        :Show the information need to fill;
+        |Admin|
+        :Fill and respond the information;
+        |UI|
+        :Send new userClass infromation;
+        |Manage Account|
+        :Request add new userClass;
+        |User Class|
+        :Respond add result;
+        |Manage Account|
+        :Respond add result;
+        |UI|
+        :Show add result;
+        stop
+    elseif (Admin choice) is (Modify user) then
+        |Admin|
+        :Request userClass detail;
+        |UI|
+        :Respond userClass detail;
+        repeat 
+            |Admin|
+            :Send changed information;
+            |UI|
+            :Request change userClass detail;
+            |Manage Account|
+            :Request change userClass detail;
+            |User Class|
+            :Respond change result;
+            |Manage Account|
+            :Respond change result;
+            |UI|
+            :Show change result;
+            repeat while (Information) is (not valid or unfilled)
+            ->no;
+            stop
+    elseif (Admin choice) is (Delete user) then
+    |Admin|
+    :Choose account to delete;
+    |UI|
+    :Request delete account;
+    |Manage Account|
+    :Request delete account;
+    |User Class|
+    :Respond delete account result;
+    |Manage Account|
+    :Respond delete account result;
+    |UI|
+    :Show delete account result; 
+    stop
+    else
+    endif
+
+
+    |Admin|
+stop
+
+
+
+
+@enduml

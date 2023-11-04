@@ -1,0 +1,28 @@
+@startuml ACT3 Sign in
+skin rose
+!pragma useVerticalIf on
+scale 3
+
+title "Sign in"
+
+|User|
+start
+    :login to the system;
+    |UI|
+    :Request authentication;
+    |User Class|
+    :Give access to the system;
+    |UI|
+    if () is (Correct information) then
+        |UI|
+        :Show Accessed UI;
+    else (Incorrect information) 
+        |UI|
+        :Show Error Message;
+    endif
+stop
+
+
+
+
+@enduml
