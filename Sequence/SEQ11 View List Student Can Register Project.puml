@@ -1,0 +1,25 @@
+@startuml ViewListStudentCanRegisterProject
+skin rose
+hide footbox
+scale 5
+
+title "View list student can register project"
+actor "Teacher" as teacher
+boundary ": User Interface\nClass" as userInterface
+control ": Manage Project\nClass" as manageProject
+entity ": Project\nClass" as project
+activate teacher
+teacher -> userInterface: 1. Select label "list student can register project"
+activate userInterface
+userInterface -> manageProject: 2. Request list of students
+activate manageProject
+manageProject -> project: 3. Get list of students
+activate project
+project -> manageProject: 4. Return list of students
+deactivate project
+manageProject -> userInterface: 5. Return list of students
+deactivate manageProject
+userInterface -> teacher: 6. Display list of students
+deactivate userInterface
+deactivate teacher
+@enduml

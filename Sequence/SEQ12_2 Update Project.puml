@@ -1,0 +1,41 @@
+@startuml UpdateProject
+skin rose
+scale 5
+hide footbox
+
+title "Update project"
+actor "Academic affair" as aa
+boundary ": User Interface\nClass" as ui
+control ": Manage Project\n Class" as mp
+entity ": Project\nClass" as p
+autonumber
+aa ++
+aa -> ui ++: Access project information interface
+ui -> aa --: Display project information interface
+aa -> ui ++: Choose "Update project" feature
+ui -> mp ++: Request update project
+mp -> ui: Request new project information
+ui -> aa --: Display edit project information interface
+aa -> ui ++: Enter new project information
+ui -> aa: Require confirmation
+alt Confirmation not confirmed
+  aa -> ui: Refuse to confirm
+  ui -> aa --: Display old project information
+else Confirmation confirmed
+  autonumber 7
+  aa -> ui ++: Accept to confirm
+  ui -> mp: Transfer data
+  mp -> mp: Validate data
+  alt Empty/Invalid data
+    mp -> ui: Return message error
+    ui -> aa --: Display message error
+  else Valid data
+    autonumber 10
+    mp -> p ++: Update project
+    p -> mp --: Return new project information
+    mp -> ui --++: Return new project information
+    ui -> aa --: Display new project information
+  end
+end
+aa --
+@enduml
