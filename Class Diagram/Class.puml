@@ -2,101 +2,160 @@
 
 skin rose
 skinparam classAttributeIconSize 0
+' skinparam linetype ortho
+skinparam linetype polyline
 hide circle
 
+class Account {
+    - username
+    - password
+
+    + get()
+    + update()
+}
+
 class User {
-    # Email
-    # Name
-    # Password
+    # email
+    # name
+    # dateOfBirth
 
-    + Login(string, string)
-    + ViewProfile()
-    + EditProfile(User)
+    + get()
+    + update()
 }
 
-class ManageAccount {
-    + Add Account()
-    + View Account()
-    + Modify Account()
-    + Delete Account()
-}
-
-class Admin {
-
+class Authentication {
+    + login()
+    + logout()
+    + register()
 }
 
 class AcademicAffair {
+    - academicAffairCode
+    - faculty
+    - position
 
+    + get()
+    + update()
 }
 
 class Student {
-    - StudentId
-    + ViewStudentList()
-    + AddStudent()
-    + ModifyStudent()
-    + DeleteStudent()
-    + ViewStudentScore()
-    + UpdateStudentScore()
-    + SubmitStudentScore()
+    - studentCode
+    - class
+    - major
+    - status
+
+    + get()
+    + update()
 }
 
 class Teacher {
+    - teacherCode
+    - faculty
 
+    + get()
+    + update()
 }
 
 class Announcement {
-    - Content
-    - TargetUser
-    + SendAnnouncement()
-    + ViewAnnouncement()
+    - title
+    - content
+    - dateCreated
+    - dateUpdated
+    - author
+    - status
+
+    + get()
+    + update()
 }
 
-class ReportInformation {
-    - Content
-    + ViewInformatioon()
-    + SaveInformation()
-    + AnalyzeProjectInformation(Project)
-    + AnalyzeReport(ReportInformation)
+class Report {
+    - title
+    - content
+    - dateCreated
+    - dateUpdated
+    - author
+
+    + get()
+    + update()
 }
 
 class Project {
-    - ProjectName
-    - Teacher
-    - Requirement
-    - MaxStudentNumber
-    - ProjectType
-    + ViewListProject()
-    + RegisterProject()
-    + ViewTeamScore()
-    + SubmitProject()
+    - name
+    - teacher
+    - requirement
+    - maxStudentNumber
+    - type
+    - status
+    - faculty
+
+    + get()
+    + update()
 }
 
 class ManageProject {
-    + CreateProject()
-    + UpdateProject()
-    + DeleteProject()
+    + createProject()
+    + getProject()
+    + updateProject()
+    + deleteProject()
 }
 
-class ManageProjectForTeacher {
-    + UpdateProject(Project,Project)
-    + CreateCustomProject(Project)
+class ManageProjectTeacher {
+    + createCustomProject()
+    + getCustomProject()
+    + updateCustomProject()
+    + deleteCustomProject()
+    + updateProjectRequirement()
 }
 
-User <-- Admin
-User <-- AcademicAffair
-User <-- Student
-User <-- Teacher
+class Implementation {
+    - student
+    - project
+    - score
+    - status
 
-ManageAccount -- Admin
-ManageAccount -- User
-AcademicAffair --- ReportInformation
-AcademicAffair --- Announcement
-AcademicAffair -- ManageProject
-Student -- Project
-Teacher -- Student
-Teacher -- ManageProjectForTeacher
-ManageProject -- Project
-ManageProjectForTeacher -- Project
+    + get()
+    + update()
+}
 
+class Register {
+    + registerProject()
+}
 
+class ManageScore {
+    + getScore()
+    + updateScore()
+    + submitScore()
+}
+
+class ManageReport {
+    + createReport()
+    + getReport()
+    + updateReport()
+    + deleteReport()
+}
+
+class ManageAnnouncement {
+    + createAnnouncement()
+    + getAnnouncement()
+    + updateAnnouncement()
+    + deleteAnnouncement()
+}
+
+Account -- User
+(Account, User) .. Authentication
+Student  -up-^ User
+User ^-right- Teacher
+User ^-left- AcademicAffair
+Project -up- Implementation
+Student -down- Implementation
+(Student, Implementation) .. Register
+AcademicAffair -left- Announcement
+AcademicAffair -up- Report
+AcademicAffair ---- Project
+(AcademicAffair, Project) .... ManageProject
+Teacher ---- Project
+(Teacher, Project) .... ManageProjectTeacher
+(Teacher, Implementation) .... ManageScore
+ManageReport .. (AcademicAffair, Report)
+(AcademicAffair, Announcement) .. ManageAnnouncement
 @enduml

@@ -1,31 +1,30 @@
 @startuml ProjectStateDiagram
 skin rose
 hide empty description
-scale 6
 
-title Project State Machine Diagram
+title Project State
 
-[*] --> Draft : Create Project
-Draft --> UnderReview : Confirm Creation
-Draft --> Discarded : Cancel Creation
-UnderReview --> Discarding: Discard Project
-UnderReview --> Updating : Update Project
-Updating --> UnderReview : Complete Update
-Discarding --> Discarded : Confirm Discard
-Discarding --> UnderReview : Cancel Discard
-UnderReview --> ReadyToBeRegistered : Complete Review
-ReadyToBeRegistered --> Registered : Register Project
-Registered --> InProgress : Implement Project
-InProgress --> Completed : Complete Project
-InProgress --> OnHold : Put Project\nOn Hold
-OnHold --> InProgress : Resume Project
+[*] --> Draft : Created project
+Draft --> UnderReview : Confirmed
+Draft --> Discarded : Cancelled
+UnderReview --> Discarding: Discarded project
+UnderReview --> Updating : Updated project
+Updating --> UnderReview : Completed update
+Discarding --> Discarded : Confirmed
+Discarding --> UnderReview : Cancelled
+UnderReview --> ReadyToBeRegistered : Reviewed
+ReadyToBeRegistered --> Registered : Registered project
+Registered --> InProgress : Implemented project
+InProgress --> Completed : Completed project
+InProgress --> OnHold : Put project\non hold
+OnHold --> InProgress : Resumed project
 Discarded --> [*]
 Completed --> [*]
 
 state Updating {
-    [*] --> Updated : Confirm\nUpdate Project
+    [*] --> Updated : Confirmed
     Updated --> [*]
-    [*] --> Unupdated : Cancel\nUpdate Project
+    [*] --> Unupdated : Cancelled
     Unupdated --> [*]
 }
 @enduml
