@@ -6,9 +6,21 @@ skinparam classAttributeIconSize 0
 skinparam linetype polyline
 hide circle
 
+class Admin {}
+
+class ManageAccount {
+    + createAccount()
+    + getAccount()
+    + updateAccount()
+    + deleteAccount()
+}
+
 class Account {
     - username
     - password
+    - role
+    - status
+    - userID
 
     + get()
     + update()
@@ -51,6 +63,7 @@ class Student {
 class Teacher {
     - teacherCode
     - faculty
+    - academicDegree
 
     + get()
     + update()
@@ -61,8 +74,7 @@ class Announcement {
     - content
     - dateCreated
     - dateUpdated
-    - author
-    - status
+    - isPublic
 
     + get()
     + update()
@@ -81,12 +93,13 @@ class Report {
 
 class Project {
     - name
-    - teacher
+    - teacherID
     - requirement
     - maxStudentNumber
     - type
-    - status
     - faculty
+    - isPublic
+    - isRegistered
 
     + get()
     + update()
@@ -108,8 +121,8 @@ class ManageProjectTeacher {
 }
 
 class Implementation {
-    - student
-    - project
+    - studentID
+    - projectID
     - score
     - status
 
@@ -132,6 +145,7 @@ class ManageReport {
     + getReport()
     + updateReport()
     + deleteReport()
+    + exportReport()
 }
 
 class ManageAnnouncement {
@@ -158,4 +172,6 @@ Teacher ---- Project
 (Teacher, Implementation) .... ManageScore
 ManageReport .. (AcademicAffair, Report)
 (AcademicAffair, Announcement) .. ManageAnnouncement
+Admin -right- Account
+(Admin, Account) .. ManageAccount
 @enduml
