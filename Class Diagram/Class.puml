@@ -3,6 +3,7 @@
 skin rose
 skinparam classAttributeIconSize 0
 hide circle
+scale 3
 
 class User {
     # Email
