@@ -5,6 +5,7 @@ skinparam classAttributeIconSize 0
 ' skinparam linetype ortho
 skinparam linetype polyline
 hide circle
+scale 3
 
 class Admin {}
 

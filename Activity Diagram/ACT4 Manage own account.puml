@@ -1,0 +1,30 @@
+@startuml ACT4 Manage own account
+skin rose
+!pragma useVerticalIf on
+scale 3
+
+title "Manage own account"
+
+|User|
+start
+    :Request information of current user;
+    |UI|
+    :Get information;
+    |User Class|
+    :Respond information;
+    |UI|
+    :Show information;
+    |User|
+    :Update information;
+    |UI|
+    :Request update;
+    |User Class|
+    :Result message;
+    |UI|
+    :Show result message;
+stop
+
+
+
+
+@enduml

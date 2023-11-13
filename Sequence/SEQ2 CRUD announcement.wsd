@@ -18,14 +18,14 @@ autonumber
 
     opt Create new announcement
         AA -> UIClass ++: Send new information
-        UIClass -> announcement ++: Request add infromation
+        UIClass -> announcement ++: Request add information
         announcement -> UIClass --: Respond add result
         UIClass -> AA --: Show add result
     end
 
     opt Modify announcement
         autonumber 5
-        AA -> UIClass ++: Show detail of information
+        AA -> UIClass ++: Get detail of information
         UIClass -> announcement ++: Get detail information
         announcement -> UIClass --: Respond detail information
         UIClass -> AA --: Show detail information

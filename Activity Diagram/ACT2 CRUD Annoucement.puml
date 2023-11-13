@@ -1,0 +1,62 @@
+@startuml ACT2 CRUD Annoucement
+skin rose
+!pragma useVerticalIf on
+scale 3
+
+title "CRUD Announcement"
+
+|Academic Affair|
+start
+    :Access announcement list;
+    |UI|
+    :Get list announcement;
+    |Announcement Class|
+    :Respond list announcement;
+    |UI|
+    :Show list announcement;
+    |Academic Affair|
+    if (choice) is (Send new information) then
+        :Send new information;
+        |UI|
+        :Request add information;
+        |Announcement Class|
+        :respond add result;
+        |UI|
+        :Show add result;
+        stop
+    elseif (choice) is (Modify) then
+        |Academic Affair|
+        :Get detail of information;
+        |UI|
+        :Get detail information;
+        |Announcement Class|
+        :Respond detail information;
+        |UI|
+        :Show detail of information;
+        |Academic Affair|
+        :Send new information;
+        |UI|
+        :Request change information;
+        |Announcement Class|
+        :Respond change result;
+        |UI|
+        :Show change result;
+        stop
+    else if (choice) is (Delete) then
+        |Academic Affair|
+        :Send new information;
+        |UI|
+        :Request add information;
+        |Announcement Class|
+        :respond add result;
+        |UI|
+        :Show add result;
+        stop
+    else
+    endif
+stop
+
+
+
+
+@enduml
