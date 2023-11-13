@@ -2,104 +2,177 @@
 
 skin rose
 skinparam classAttributeIconSize 0
+' skinparam linetype ortho
+skinparam linetype polyline
 hide circle
 scale 3
 
-class User {
-    # Email
-    # Name
-    # Password
-
-    + Login(string, string)
-    + ViewProfile()
-    + EditProfile(User)
-}
+class Admin {}
 
 class ManageAccount {
-    + Add Account()
-    + View Account()
-    + Modify Account()
-    + Delete Account()
+    + createAccount()
+    + getAccount()
+    + updateAccount()
+    + deleteAccount()
 }
 
-class Admin {
+class Account {
+    - username
+    - password
+    - role
+    - status
+    - userID
 
+    + get()
+    + update()
+}
+
+class User {
+    # email
+    # name
+    # dateOfBirth
+
+    + get()
+    + update()
+}
+
+class Authentication {
+    + login()
+    + logout()
+    + register()
 }
 
 class AcademicAffair {
+    - academicAffairCode
+    - faculty
+    - position
 
+    + get()
+    + update()
 }
 
 class Student {
-    - StudentId
-    - TypeOfTraining
-    + ViewStudentList()
-    + AddStudent()
-    + ModifyStudent()
-    + DeleteStudent()
-    + ViewStudentScore()
-    + UpdateStudentScore()
-    + SubmitStudentScore()
+    - studentCode
+    - class
+    - major
+    - status
+
+    + get()
+    + update()
 }
 
 class Teacher {
+    - teacherCode
+    - faculty
+    - academicDegree
 
+    + get()
+    + update()
 }
 
 class Announcement {
-    - Content
-    - TargetUser
-    + SendAnnouncement()
-    + ViewAnnouncement()
+    - title
+    - content
+    - dateCreated
+    - dateUpdated
+    - isPublic
+
+    + get()
+    + update()
 }
 
-class ReportInformation {
-    - Content
-    + ViewInformatioon()
-    + SaveInformation()
-    + AnalyzeProjectInformation(Project)
-    + AnalyzeReport(ReportInformation)
+class Report {
+    - title
+    - content
+    - dateCreated
+    - dateUpdated
+    - author
+
+    + get()
+    + update()
 }
 
 class Project {
-    - ProjectName
-    - Teacher
-    - Requirement
-    - MaxStudentNumber
-    - ProjectType
-    - ProjectProgress
-    + ViewListProject()
-    + RegisterProject()
-    + ViewTeamScore()
-    + SubmitProject()
+    - name
+    - teacherID
+    - requirement
+    - maxStudentNumber
+    - type
+    - faculty
+    - isPublic
+    - isRegistered
+
+    + get()
+    + update()
 }
 
 class ManageProject {
-    + CreateProject()
-    + UpdateProject()
-    + DeleteProject()
+    + createProject()
+    + getProject()
+    + updateProject()
+    + deleteProject()
 }
 
-class ManageProjectForTeacher {
-    + UpdateProject(Project,Project)
-    + CreateCustomProject(Project)
+class ManageProjectTeacher {
+    + createCustomProject()
+    + getCustomProject()
+    + updateCustomProject()
+    + deleteCustomProject()
+    + updateProjectRequirement()
 }
 
-User <-- Admin
-User <-- AcademicAffair
-User <-- Student
-User <-- Teacher
+class Implementation {
+    - studentID
+    - projectID
+    - score
+    - status
 
-ManageAccount -- Admin
-ManageAccount -- User
-AcademicAffair --- ReportInformation
-AcademicAffair --- Announcement
-AcademicAffair -- ManageProject
-Student -- Project
-Teacher -- Student
-Teacher -- ManageProjectForTeacher
-ManageProject -- Project
-ManageProjectForTeacher -- Project
+    + get()
+    + update()
+}
 
+class Register {
+    + registerProject()
+}
 
+class ManageScore {
+    + getScore()
+    + updateScore()
+    + submitScore()
+}
+
+class ManageReport {
+    + createReport()
+    + getReport()
+    + updateReport()
+    + deleteReport()
+    + exportReport()
+}
+
+class ManageAnnouncement {
+    + createAnnouncement()
+    + getAnnouncement()
+    + updateAnnouncement()
+    + deleteAnnouncement()
+}
+
+Account -- User
+(Account, User) .. Authentication
+Student  -up-^ User
+User ^-right- Teacher
+User ^-left- AcademicAffair
+Project -up- Implementation
+Student -down- Implementation
+(Student, Implementation) .. Register
+AcademicAffair -left- Announcement
+AcademicAffair -up- Report
+AcademicAffair ---- Project
+(AcademicAffair, Project) .... ManageProject
+Teacher ---- Project
+(Teacher, Project) .... ManageProjectTeacher
+(Teacher, Implementation) .... ManageScore
+ManageReport .. (AcademicAffair, Report)
+(AcademicAffair, Announcement) .. ManageAnnouncement
+Admin -right- Account
+(Admin, Account) .. ManageAccount
 @enduml
