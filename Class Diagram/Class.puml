@@ -19,7 +19,7 @@ class Account {
     - username
     - password
     - role
-    - status
+    - isLocked
     - userID
 
     + get()
@@ -54,7 +54,8 @@ class Student {
     - studentCode
     - class
     - major
-    - status
+    - isCompletedProject1
+    - isCompletedProject2
 
     + get()
     + update()
@@ -124,7 +125,7 @@ class Implementation {
     - studentID
     - projectID
     - score
-    - status
+    - isCompleted
 
     + get()
     + update()
