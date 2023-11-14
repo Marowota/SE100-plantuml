@@ -1,0 +1,62 @@
+@startuml ACT5 CRUD Annoucement (teacher)
+skin rose
+!pragma useVerticalIf on
+scale 3
+
+title "CRUD Announcement (teacher)"
+
+|Teacher|
+start
+    :Access announcement list;
+    |UI|
+    :Get list announcement;
+    |Announcement Class|
+    :Respond list announcement;
+    |UI|
+    :Show list announcement;
+    |Teacher|
+    if (choice) is (Send new information) then
+        :Send new information;
+        |UI|
+        :Request add information;
+        |Announcement Class|
+        :respond add result;
+        |UI|
+        :Show add result;
+        stop
+    elseif (choice) is (Modify) then
+        |Teacher|
+        :Get detail of information;
+        |UI|
+        :Get detail information;
+        |Announcement Class|
+        :Respond detail information;
+        |UI|
+        :Show detail of information;
+        |Teacher|
+        :Send new information;
+        |UI|
+        :Request change information;
+        |Announcement Class|
+        :Respond change result;
+        |UI|
+        :Show change result;
+        stop
+    else if (choice) is (Delete) then
+        |Teacher|
+        :Send new information;
+        |UI|
+        :Request add information;
+        |Announcement Class|
+        :respond add result;
+        |UI|
+        :Show add result;
+        stop
+    else
+    endif
+stop
+
+
+
+
+@enduml

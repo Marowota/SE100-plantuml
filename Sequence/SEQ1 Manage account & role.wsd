@@ -22,12 +22,14 @@ autonumber
     opt Admin choice: Add userClass
         admin -> UIClass ++: Request add
         UIClass -> admin --: Show the information need to fill
+        loop information not valid or unfilled information
         admin -> UIClass ++: Fill and respond the information
         UIClass -> manageAccount ++: Send new userClass information
         manageAccount -> userClass ++: Request add new userClass
         userClass -> manageAccount --: Respond add result
         manageAccount -> UIClass --: Respond and result
         UIClass -> admin --: show add result
+        end
     end
     opt admin choice: Modify userClass
         autonumber 7
