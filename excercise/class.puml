@@ -1,0 +1,9 @@
+@startuml ClassMybicycle
+
+skin rose
+skinparam classAttributeIconSize 0
+skinparam linetype polyline
+hide circle
+
+@enduml
+```

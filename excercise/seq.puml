@@ -1,0 +1,8 @@
+@startuml SequenceDiagram
+
+skin rose
+hide footbox
+
+actor Customer
+
+@enduml
