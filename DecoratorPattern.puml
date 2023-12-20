@@ -1,0 +1,34 @@
+@startuml TrangTriCayThongPattern
+
+interface TrangTriNoel {
+    + operation()
+}
+
+class CayThong {
+    + operation()
+}
+
+class TrangTriCayThong {
+    - component: Component
+    + operation()
+}
+
+class TrangTriTrenCay {
+    + operation()
+}
+
+class TrangTriDen {
+    + operation()
+}
+
+class TrangTriGoc {
+    + operation()
+}
+
+TrangTriNoel <|.. CayThong
+TrangTriNoel <|.. TrangTriCayThong
+TrangTriCayThong <|.. TrangTriTrenCay
+TrangTriCayThong <|.. TrangTriDen
+TrangTriCayThong <|.. TrangTriGoc
+
+@enduml
