@@ -1,5 +1,4 @@
-@startuml Class Diagram
-
+@startuml ClassDiagram
 skin rose
 skinparam classAttributeIconSize 0
 ' skinparam linetype ortho
@@ -15,7 +14,7 @@ class Account {
 
     + get()
     + set()
-    + {static} getAccountById()
+    + {static} getAccountByID()
     + {static} createAccount()
     + {static} updateAccount()
     + {static} deleteAccount()
@@ -29,6 +28,8 @@ class User {
 
     + get()
     + set()
+    + {static} getUserByID()
+    + {static} updateUserByID()
 }
 
 class AcademicAffair {
@@ -39,7 +40,7 @@ class AcademicAffair {
     + get()
     + set()
     + {static} createAA()
-    + {static} getAAById()
+    + {static} getAAByID()
     + {static} getAAList()
     + {static} updateAA()
     + {static} deleteAA()
@@ -89,9 +90,9 @@ class Announcement {
     + set()
     + {static} getAnnouncementList()
     + {static} createAnnouncement()
-    + {static} deleteAnnouncement()
-    + {static} getAnnouncementById()
     + {static} updateAnnouncement()
+    + {static} deleteAnnouncement()
+    + {static} getAnnouncementByID()
 }
 
 class Project {
@@ -105,10 +106,17 @@ class Project {
     - classID
     - isPublic
     - isRegistered
-    - registerTimeId
+    - registerTimeID
 
     + get()
     + set()
+    + {static} createProject()
+    + {static} getProjectList()
+    + {static} isProjectValid()
+    + {static} deleteProject()
+    + {static} updateProject()
+    + {static} getProjectByID()
+    + {static} setProjectTime()
 }
 
 class Implementation {
@@ -117,10 +125,13 @@ class Implementation {
     - projectID
     - score
     - isCompleted
-    - projectLink
+    - submissionLink
 
     + get()
     + set()
+    + {static}  getScoreList()
+    + {static}  getScoreByID()
+    + {static}  updateScore()
 }
 
 class RegisterTime {
@@ -129,6 +140,13 @@ class RegisterTime {
     - faculty
     - year
     - semester
+
+    + get()
+    + set()
+    + {static} getAllTime()
+    + {static} createTime()
+    + {static} updateTime()
+    + {static} deleteTime()
 }
 
 Account "1" -down- "1" User
