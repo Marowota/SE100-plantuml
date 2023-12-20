@@ -1,9 +1,59 @@
-@startuml ClassMybicycle
+@startuml Class Diagram
 
 skin rose
 skinparam classAttributeIconSize 0
 skinparam linetype polyline
 hide circle
 
+class KhachHang {
+    - idKhachHang: int
+    - tenKhachHang: string
+    - soDienThoai: string
+    - diaChi: string
+    - diemTichLuy: int
+
+    + get()
+    + set()
+    + {static} getAccountById()
+    + {static} createAccount()
+    + {static} updateAccount()
+    + {static} deleteAccount()
+}
+
+
+class TaiKhoan {
+    -idTaiKhoan: int
+    -tenDangNhap: string
+    -matKhau: string
+}
+
+class XeChoThue {
+    -idXeChoThue: int
+    -tenXe: string
+    -mucGiaNgay: decimal
+    -trangThai: string
+}
+
+class HoaDonChoThue {
+    -idHoaDon: int
+    -ngayThue: DateTime
+    -soNgayThue: int
+    -tongTien: decimal
+    -phiSuaChua: decimal
+    -daThanhToan: bool
+}
+
+class DanhMucGiamGia {
+    -idDanhMuc: int
+    -mucDiem: int
+    -tiLeGiamGia: decimal
+}
+
+class PhieuDatCoc {
+    -idPhieuDatCoc: int
+    -idHoaDon: int
+    -ngayDatCoc: DateTime
+    -soTienDatCoc: decimal
+    -daTraTien: bool
+}
 @enduml
-```

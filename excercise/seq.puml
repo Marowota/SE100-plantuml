@@ -3,6 +3,62 @@
 skin rose
 hide footbox
 
-actor Customer
+title Mua xe trực tiếp
+
+actor NhanVien
+boundary ":User Interface\nClass" as ui
+control ":Xe Controller\nClass" as xeControl
+control ":KhachHang Controller\nClass" as khControl
+control ":MuaBan Controller\nClass" as mbControl
+control ":HoaDon Controller\nClass" as hdControl
+control ":PhieuMuaXe Controller\nClass" as pmxControl
+entity ":Xe Entity\nClass" as xe
+entity ":KhachHang Entity\nClass" as kh
+entity ":MuaBan Entity\nClass" as mb
+entity ":HoaDon Entity\nClass" as hd
+entity ":PhieuMuaXe Entity\nClass" as pmx
+
+autonumber
+NhanVien++
+NhanVien -> ui++ : Tạo phiếu mua xe
+ui -> pmxControl++ : Gửi yêu cầu tạo phiếu mua xe
+pmxControl -> pmx++ : Tạo phiếu mua xe
+pmx --> pmxControl-- : Trả về phiếu mua xe
+pmxControl --> ui-- : Trả về phiếu mua xe
+ui --> NhanVien : Hiển thị phiếu mua xe
+NhanVien -> ui : Nhập thông tin hóa đơn
+ui -> hdControl++ : Gửi yêu cầu tạo hóa đơn
+hdControl -> hd++ : Tạo hóa đơn
+hd --> hdControl-- : Trả về hóa đơn
+hdControl --> ui-- : Trả về hóa đơn
+ui --> NhanVien : Hiển thị hóa đơn
+alt Khách hàng mua lần đầu
+    NhanVien -> ui : Nhập thông tin khách hàng
+    ui -> khControl++ : Gửi yêu cầu tạo khách hàng
+    khControl -> kh++ : Tạo khách hàng
+    kh --> khControl-- : Trả về thông tin khách hàng
+    khControl --> ui-- : Trả về thông tin khách hàng
+    ui --> NhanVien : Hiển thị thông tin khách hàng
+end
+NhanVien -> ui : Chọn khách hàng
+ui -> mbControl++ : Gửi yêu cầu tạo mua bán
+mbControl -> mb++ : Tạo mua bán
+mb --> mbControl-- : Trả về mua bán
+par
+    mbControl -> xeControl++ : Gửi yêu cầu cập nhật trạng thái đã bán của xe
+    mbControl++
+    xeControl -> xe++ : Cập nhật trạng thái đã bán của xe
+    xe --> xeControl-- : Trả về thông báo
+    xeControl--> mbControl-- : Trả về thông báo
+    else
+    autonumber 23
+    mbControl -> khControl++ : Gửi yêu cầu cập nhật thông tin tích điểm
+    khControl -> kh++ : Cập nhật thông tin tích điểm
+    kh --> khControl-- : Trả về thông báo
+    khControl--> mbControl-- : Trả về thông báo
+    mbControl--
+end
+mbControl --> ui-- : Trả về mua bán
+ui --> NhanVien : Hiển thị mua bán
 
 @enduml
