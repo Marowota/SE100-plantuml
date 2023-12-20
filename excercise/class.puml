@@ -93,6 +93,11 @@ class ThongTinKhachHang{
     - soDiemTich: int
 }
 
+class DanMucGiamGia {
+    - id: int
+    - soDiem: int
+    - mucGiamGia: int
+}
 
 LoaiXeDap <|-- XeDap
 ChiTietHoaDon "*"--*"1" HoaDon
