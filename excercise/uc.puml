@@ -1,5 +1,5 @@
 @startuml MyBicycle
-
+skin rose
 left to right direction
 
 actor "Chủ của hàng" as owner
@@ -11,59 +11,38 @@ rectangle MyBicycle {
     usecase "Nhập xe" as nhapXe
     usecase "Bán xe" as banXe
     usecase "Thuê xe" as thueXe
-    usecase "Mua xe" as muaXe
-    usecase "Trả xe" as traXe
-    usecase "Đổi xe" as doiXe
+    usecase "Đặt mua xe" as muaXe
+    usecase "Đổi trả xe" as doiTraXe
+    ' usecase "Trả xe" as traXe
+    ' usecase "Đổi xe" as doiXe
     usecase "Đăng nhập" as dangNhap
     usecase "Đăng ký" as dangKy
     usecase "Tạo phiếu mua hàng" as taoPhieuMuaHang
     usecase "Tạo hóa đơn" as taoHoaDon
+    usecase "Cất kho" as catKho
+    usecase "Nhập nhiều xe" as nhapNhieuXe
 }
 
 owner ---> (nhapXe)
-owner --> (banXe)
+(nhapXe) ..> (catKho): <<include>>
+(nhapXe) <.. (nhapNhieuXe): <<extend>>
 owner ---> (trungBay)
+(trungBay) <.. (catKho): <<extend>>
 
+(muaXe) ...> (banXe): <<include>>
 (thueXe) <--- customer
 (muaXe) <--- customer
-(traXe) <--- customer
-(doiXe) <--- customer
-(dangKy) <-- customer
+(doiTraXe) <--- customer
+(catKho) <... (doiTraXe): <<extend>>
+(taoHoaDon) <... (doiTraXe): <<extend>>
+(dangKy) <--- customer
 (dangNhap) <--- customer
 
-staff ---> (taoPhieuMuaHang)
-staff ---> (taoHoaDon)
+staff --> (banXe)
+(banXe) ..> (taoPhieuMuaHang): <<include>>
+(banXe) ..> (taoHoaDon): <<include>>
+
+
 
 
 @enduml
-```
-left to right direction
-actor "Chủ của hàng" as owner
-actor "Khách hàng" as customer
-actor "Nhân viên" as staff
-rectangle MyBicycle {
-    usecase "Trưng bày" as trungBay
-    usecase "Nhập xe" as nhapXe
-    usecase "Bán xe" as banXe
-    usecase "Thuê xe" as thueXe
-    usecase "Mua xe" as muaXe
-    usecase "Trả xe" as traXe
-    usecase "Đổi xe" as doiXe
-    usecase "Đăng nhập" as dangNhap
-    usecase "Đăng ký" as dangKy
-    usecase "Tạo phiếu mua hàng" as taoPhieuMuaHang
-    usecase "Tạo hóa đơn" as taoHoaDon
-}
-owner ---> (nhapXe)
-owner --> (banXe)
-owner ---> (trungBay)
-(thueXe) <--- customer
-(muaXe) <--- customer
-(traXe) <--- customer
-(doiXe) <--- customer
-(dangKy) <-- customer
-(dangNhap) <--- customer
-staff ---> (taoPhieuMuaHang)
-staff ---> (taoHoaDon)
-@enduml
-```

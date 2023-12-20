@@ -2,8 +2,15 @@
 
 skin rose
 skinparam classAttributeIconSize 0
+<<<<<<< HEAD
 skinparam linetype polyline
 hide circle
+=======
+' skinparam linetype ortho
+skinparam linetype polyline
+hide circle
+scale 3
+>>>>>>> 3dd3f0913e1e2611eb880955c34bf248c1329799
 
 class KhachHang {
     - idKhachHang: int
@@ -12,12 +19,15 @@ class KhachHang {
     - diaChi: string
     - diemTichLuy: int
 
+<<<<<<< HEAD
     + get()
     + set()
     + {static} getAccountById()
     + {static} createAccount()
     + {static} updateAccount()
     + {static} deleteAccount()
+=======
+>>>>>>> 3dd3f0913e1e2611eb880955c34bf248c1329799
 }
 
 
@@ -43,6 +53,15 @@ class HoaDonChoThue {
     -daThanhToan: bool
 }
 
+<<<<<<< HEAD
+=======
+class ChiTietHoaDonChoThue {
+    -idChiTiet: int
+    -idHoaDon: int
+    -idXeChoThue: int
+}
+
+>>>>>>> 3dd3f0913e1e2611eb880955c34bf248c1329799
 class DanhMucGiamGia {
     -idDanhMuc: int
     -mucDiem: int
@@ -56,4 +75,22 @@ class PhieuDatCoc {
     -soTienDatCoc: decimal
     -daTraTien: bool
 }
+<<<<<<< HEAD
+=======
+
+class KhachHangDanhMucGiamGia {
+    -idKhachHangDanhMucGiamGia: int
+    -idKhachHang: int
+    -idDanhMuc: int
+}
+
+KhachHang "1"--"1"  TaiKhoan
+KhachHang "1"--"n"  HoaDonChoThue
+KhachHang "1"--"n"  PhieuDatCoc
+PhieuDatCoc "1"--"1"  HoaDonChoThue
+KhachHang "1"--"n" KhachHangDanhMucGiamGia
+KhachHangDanhMucGiamGia "1"--"1" DanhMucGiamGia
+HoaDonChoThue "1"--"n" ChiTietHoaDonChoThue
+ChiTietHoaDonChoThue "1"--"1" XeChoThue
+>>>>>>> 3dd3f0913e1e2611eb880955c34bf248c1329799
 @enduml
