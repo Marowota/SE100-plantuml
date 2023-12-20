@@ -7,12 +7,11 @@ skinparam linetype polyline
 hide circle
 scale 3
 
-class KhachHang {
-    - idKhachHang: int
-    - tenKhachHang: string
-    - soDienThoai: string
-    - diaChi: string
-    - diemTichLuy: int
+class Account {
+    - username
+    - password
+    - role
+    - userID
 
     + get()
     + set()
@@ -22,40 +21,127 @@ class KhachHang {
     + {static} deleteAccount()
 }
 
+class User {
+    # email
+    # name
+    # dateOfBirth
+    # phone
 
-class TaiKhoan {
-    -idTaiKhoan: int
-    -tenDangNhap: string
-    -matKhau: string
+    + get()
+    + set()
 }
 
-class XeChoThue {
-    -idXeChoThue: int
-    -tenXe: string
-    -mucGiaNgay: decimal
-    -trangThai: string
+class AcademicAffair {
+    - academicAffairCode
+    - faculty
+    - userID
+
+    + get()
+    + set()
+    + {static} createAA()
+    + {static} getAAById()
+    + {static} getAAList()
+    + {static} updateAA()
+    + {static} deleteAA()
+
 }
 
-class HoaDonChoThue {
-    -idHoaDon: int
-    -ngayThue: DateTime
-    -soNgayThue: int
-    -tongTien: decimal
-    -phiSuaChua: decimal
-    -daThanhToan: bool
+class Student {
+    - studentCode
+    - major
+    - status
+    - userID
+    - classID
+
+    + get()
+    + set()
+    + {static} getStudentList()
+    
 }
 
-class DanhMucGiamGia {
-    -idDanhMuc: int
-    -mucDiem: int
-    -tiLeGiamGia: decimal
+class Teacher {
+    - teacherCode
+    - faculty
+    - academicDegree
+    - userID
+
+    + get()
+    + set()
+    + {static} getTeacherList()
 }
 
-class PhieuDatCoc {
-    -idPhieuDatCoc: int
-    -idHoaDon: int
-    -ngayDatCoc: DateTime
-    -soTienDatCoc: decimal
-    -daTraTien: bool
+class ClassInfo {
+    - className
+
+    +get()
+    +set()
+    + {static} getAllClass()
 }
+
+class Announcement {
+    - title
+    - content
+    - dateCreated
+    - dateUpdated
+    - isPublic
+
+    + get()
+    + set()
+    + {static} getAnnouncementList()
+    + {static} createAnnouncement()
+    + {static} deleteAnnouncement()
+    + {static} getAnnouncementById()
+    + {static} updateAnnouncement()
+}
+
+class Project {
+    - name
+    - teacherID
+    - requirement
+    - maxStudentNumber
+    - type
+    - faculty
+    - major
+    - classID
+    - isPublic
+    - isRegistered
+    - registerTimeId
+
+    + get()
+    + set()
+}
+
+class Implementation {
+    - student1ID
+    - project2ID
+    - projectID
+    - score
+    - isCompleted
+    - projectLink
+
+    + get()
+    + set()
+}
+
+class RegisterTime {
+    - start
+    - end
+    - faculty
+    - year
+    - semester
+}
+
+Account "1" -down- "1" User
+User <|-down- Student
+User <|-- Teacher
+User <|-- AcademicAffair
+Student "1" *-down- "*" Implementation
+Student "*" -down- "1" ClassInfo
+Implementation "1" -down-* "1" Project
+ClassInfo "1" -down- "*" Project
+Teacher "1" *-down- "*" Project
+Project "*" -right- "1" RegisterTime
+AcademicAffair "*" -down- "*" Announcement
+AcademicAffair "*" -- "*" Project
+Teacher "*" -- "*" Announcement
 @enduml
