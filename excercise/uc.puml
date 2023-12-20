@@ -33,10 +33,15 @@ owner ---> (trungBay)
 (thueXe) <--- customer
 (muaXe) <--- customer
 (doiTraXe) <--- customer
-(catKho) <... (doiTraXe): <<extend>>
-(taoHoaDon) <... (doiTraXe): <<extend>>
+(catKho) <.. (doiTraXe): <<extend>>
+(taoHoaDon) <.. (doiTraXe): <<extend>>
 (dangKy) <--- customer
 (dangNhap) <--- customer
+
+(taoPhieuMuaHang) -[hidden]-> (muaXe)
+(taoPhieuMuaHang) -[hidden]-> (thueXe)
+(taoPhieuMuaHang) -[hidden]-> (dangNhap)
+(taoPhieuMuaHang) -[hidden]-> (dangKy)
 
 staff --> (banXe)
 (banXe) ..> (taoPhieuMuaHang): <<include>>
