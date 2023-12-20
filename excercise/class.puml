@@ -1,0 +1,76 @@
+@startuml Class Diagram
+
+skin rose
+skinparam classAttributeIconSize 0
+' skinparam linetype ortho
+skinparam linetype polyline
+hide circle
+scale 3
+
+class KhachHang {
+    - idKhachHang: int
+    - tenKhachHang: string
+    - soDienThoai: string
+    - diaChi: string
+    - diemTichLuy: int
+
+}
+
+
+class TaiKhoan {
+    -idTaiKhoan: int
+    -tenDangNhap: string
+    -matKhau: string
+}
+
+class XeChoThue {
+    -idXeChoThue: int
+    -tenXe: string
+    -mucGiaNgay: decimal
+    -trangThai: string
+}
+
+class HoaDonChoThue {
+    -idHoaDon: int
+    -ngayThue: DateTime
+    -soNgayThue: int
+    -tongTien: decimal
+    -phiSuaChua: decimal
+    -daThanhToan: bool
+}
+
+class ChiTietHoaDonChoThue {
+    -idChiTiet: int
+    -idHoaDon: int
+    -idXeChoThue: int
+}
+
+class DanhMucGiamGia {
+    -idDanhMuc: int
+    -mucDiem: int
+    -tiLeGiamGia: decimal
+}
+
+class PhieuDatCoc {
+    -idPhieuDatCoc: int
+    -idHoaDon: int
+    -ngayDatCoc: DateTime
+    -soTienDatCoc: decimal
+    -daTraTien: bool
+}
+
+class KhachHangDanhMucGiamGia {
+    -idKhachHangDanhMucGiamGia: int
+    -idKhachHang: int
+    -idDanhMuc: int
+}
+
+KhachHang "1"--"1"  TaiKhoan
+KhachHang "1"--"n"  HoaDonChoThue
+KhachHang "1"--"n"  PhieuDatCoc
+PhieuDatCoc "1"--"1"  HoaDonChoThue
+KhachHang "1"--"n" KhachHangDanhMucGiamGia
+KhachHangDanhMucGiamGia "1"--"1" DanhMucGiamGia
+HoaDonChoThue "1"--"n" ChiTietHoaDonChoThue
+ChiTietHoaDonChoThue "1"--"1" XeChoThue
+@enduml
