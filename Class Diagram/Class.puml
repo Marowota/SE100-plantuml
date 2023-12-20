@@ -7,67 +7,75 @@ skinparam linetype polyline
 hide circle
 scale 3
 
-class Admin {}
-
-class ManageAccount {
-    + createAccount()
-    + getAccount()
-    + updateAccount()
-    + deleteAccount()
-}
-
 class Account {
     - username
     - password
     - role
-    - status
     - userID
 
     + get()
-    + update()
+    + set()
+    + {static} getAccountById()
+    + {static} createAccount()
+    + {static} updateAccount()
+    + {static} deleteAccount()
 }
 
 class User {
     # email
     # name
     # dateOfBirth
+    # phone
 
     + get()
-    + update()
-}
-
-class Authentication {
-    + login()
-    + logout()
-    + register()
+    + set()
 }
 
 class AcademicAffair {
     - academicAffairCode
     - faculty
-    - position
+    - userID
 
     + get()
-    + update()
+    + set()
+    + {static} createAA()
+    + {static} getAAById()
+    + {static} getAAList()
+    + {static} updateAA()
+    + {static} deleteAA()
+
 }
 
 class Student {
     - studentCode
-    - class
     - major
     - status
+    - userID
+    - classID
 
     + get()
-    + update()
+    + set()
+    + {static} getStudentList()
+    
 }
 
 class Teacher {
     - teacherCode
     - faculty
     - academicDegree
+    - userID
 
     + get()
-    + update()
+    + set()
+    + {static} getTeacherList()
+}
+
+class ClassInfo {
+    - className
+
+    +get()
+    +set()
+    + {static} getAllClass()
 }
 
 class Announcement {
@@ -78,18 +86,12 @@ class Announcement {
     - isPublic
 
     + get()
-    + update()
-}
-
-class Report {
-    - title
-    - content
-    - dateCreated
-    - dateUpdated
-    - author
-
-    + get()
-    + update()
+    + set()
+    + {static} getAnnouncementList()
+    + {static} createAnnouncement()
+    + {static} deleteAnnouncement()
+    + {static} getAnnouncementById()
+    + {static} updateAnnouncement()
 }
 
 class Project {
@@ -99,80 +101,47 @@ class Project {
     - maxStudentNumber
     - type
     - faculty
+    - major
+    - classID
     - isPublic
     - isRegistered
+    - registerTimeId
 
     + get()
-    + update()
-}
-
-class ManageProject {
-    + createProject()
-    + getProject()
-    + updateProject()
-    + deleteProject()
-}
-
-class ManageProjectTeacher {
-    + createCustomProject()
-    + getCustomProject()
-    + updateCustomProject()
-    + deleteCustomProject()
-    + updateProjectRequirement()
+    + set()
 }
 
 class Implementation {
-    - studentID
+    - student1ID
+    - project2ID
     - projectID
     - score
-    - status
+    - isCompleted
+    - projectLink
 
     + get()
-    + update()
+    + set()
 }
 
-class Register {
-    + registerProject()
+class RegisterTime {
+    - start
+    - end
+    - faculty
+    - year
+    - semester
 }
 
-class ManageScore {
-    + getScore()
-    + updateScore()
-    + submitScore()
-}
-
-class ManageReport {
-    + createReport()
-    + getReport()
-    + updateReport()
-    + deleteReport()
-    + exportReport()
-}
-
-class ManageAnnouncement {
-    + createAnnouncement()
-    + getAnnouncement()
-    + updateAnnouncement()
-    + deleteAnnouncement()
-}
-
-Account -- User
-(Account, User) .. Authentication
-Student  -up-^ User
-User ^-right- Teacher
-User ^-left- AcademicAffair
-Project -up- Implementation
-Student -down- Implementation
-(Student, Implementation) .. Register
-AcademicAffair -left- Announcement
-AcademicAffair -up- Report
-AcademicAffair ---- Project
-(AcademicAffair, Project) .... ManageProject
-Teacher ---- Project
-(Teacher, Project) .... ManageProjectTeacher
-(Teacher, Implementation) .... ManageScore
-ManageReport .. (AcademicAffair, Report)
-(AcademicAffair, Announcement) .. ManageAnnouncement
-Admin -right- Account
-(Admin, Account) .. ManageAccount
+Account "1" -down- "1" User
+User <|-down- Student
+User <|-- Teacher
+User <|-- AcademicAffair
+Student "1" *-down- "*" Implementation
+Student "*" -down- "1" ClassInfo
+Implementation "1" -down-* "1" Project
+ClassInfo "1" -down- "*" Project
+Teacher "1" *-down- "*" Project
+Project "*" -right- "1" RegisterTime
+AcademicAffair "*" -down- "*" Announcement
+AcademicAffair "*" -- "*" Project
+Teacher "*" -- "*" Announcement
 @enduml
