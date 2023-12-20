@@ -1,5 +1,6 @@
 @startuml MyBicycle
 skin rose
+scale 3
 left to right direction
 
 actor "Chủ của hàng" as owner

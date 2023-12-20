@@ -7,70 +7,111 @@ skinparam linetype polyline
 hide circle
 scale 3
 
-class KhachHang {
-    - idKhachHang: int
-    - tenKhachHang: string
-    - soDienThoai: string
+class LoaiXeDap {
+    - id: int
+    - tenXe: string
+    - dongXe: string
+    - nuocSanXuat: string
+}
+
+class PhieuNhapXeDap{
+    - id: int
+    - ngayNhap: date
+    - giaNhap: string
+    - hienTrang: string 
+}
+
+
+class DayKho {
+    - id: int
+    - soLuotTrong: int
+    - soLuongChua: int
+}
+
+class XeDap {
+    - id: int
+    - idLoaiXeDap: int
+    - idNhapXeDap: int
+    - idDay: int
+    - trangThai: string
+    - mucGia: int
+}
+
+class PhieuDatMua {
+    - id: int
+    - idXe: int
+    - ngayNhan: date
+    - hinhThucGiaoHang: string
     - diaChi: string
-    - diemTichLuy: int
+}
 
+class PhieuMuaHang {
+    - id: int
+    - idXe: int
+    - ngayNhan: date
+    - hinhThucGiaoHang: string
+    - diaChi: string
+}
+
+class HoaDon {
+    - id: int
+    - ngayBan: date
+}
+
+class ChiTietHoaDon {
+    - id: int
+    - idHoaDon: int
+    - idXe: int
+    - soLuong: int
+}
+
+class PhieuDangKiDoiTra {
+    - id: int
+    - idKhachHang: int
+    - tenSanPham: string
+    - moTaHienTrang: string
+    - linkHinhMinhHoa: string
+    - hinhThucDoiTra: string
+    - idXeMuonDoi: int
+}
+
+class ThongTinChoThue {
+    - id: int
+    - idKhachHang: int
+    - idXeChoThue: int
+    - ngayNhanXe: date
+    - soNgayThue: int
+    - linkAnhChupCCCD: string
+    - chiPhiSuaChua: int
+}
+
+class ThongTinKhachHang{
+    - id: int
+    - tenTaiKhoan: string
+    - matKhau: string
+    - diaChi: string
+    - soDiemTich: int
 }
 
 
-class TaiKhoan {
-    -idTaiKhoan: int
-    -tenDangNhap: string
-    -matKhau: string
-}
+LoaiXeDap <|-- XeDap
+ChiTietHoaDon "*"--*"1" HoaDon
+PhieuNhapXeDap "1"--"*" XeDap
+DayKho "1"--"*" XeDap
+XeDap "1"--"*" ChiTietHoaDon
+XeDap "1"--"*" PhieuDangKiDoiTra
+ThongTinKhachHang "1"--"*" PhieuDangKiDoiTra
+XeDap "1"--"*" PhieuMuaHang
+XeDap "1"--"*" PhieuDatMua
+ThongTinChoThue "*"--"1" ThongTinKhachHang
+ThongTinChoThue "*"--"1" XeDap
 
-class XeChoThue {
-    -idXeChoThue: int
-    -tenXe: string
-    -mucGiaNgay: decimal
-    -trangThai: string
-}
 
-class HoaDonChoThue {
-    -idHoaDon: int
-    -ngayThue: DateTime
-    -soNgayThue: int
-    -tongTien: decimal
-    -phiSuaChua: decimal
-    -daThanhToan: bool
-}
 
-class ChiTietHoaDonChoThue {
-    -idChiTiet: int
-    -idHoaDon: int
-    -idXeChoThue: int
-}
 
-class DanhMucGiamGia {
-    -idDanhMuc: int
-    -mucDiem: int
-    -tiLeGiamGia: decimal
-}
 
-class PhieuDatCoc {
-    -idPhieuDatCoc: int
-    -idHoaDon: int
-    -ngayDatCoc: DateTime
-    -soTienDatCoc: decimal
-    -daTraTien: bool
-}
 
-class KhachHangDanhMucGiamGia {
-    -idKhachHangDanhMucGiamGia: int
-    -idKhachHang: int
-    -idDanhMuc: int
-}
 
-KhachHang "1"--"1"  TaiKhoan
-KhachHang "1"--"n"  HoaDonChoThue
-KhachHang "1"--"n"  PhieuDatCoc
-PhieuDatCoc "1"--"1"  HoaDonChoThue
-KhachHang "1"--"n" KhachHangDanhMucGiamGia
-KhachHangDanhMucGiamGia "1"--"1" DanhMucGiamGia
-HoaDonChoThue "1"--"n" ChiTietHoaDonChoThue
-ChiTietHoaDonChoThue "1"--"1" XeChoThue
+
+
 @enduml
