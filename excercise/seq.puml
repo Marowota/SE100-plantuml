@@ -9,12 +9,10 @@ actor NhanVien
 boundary ":User Interface\nClass" as ui
 control ":Xe Controller\nClass" as xeControl
 control ":KhachHang Controller\nClass" as khControl
-control ":MuaBan Controller\nClass" as mbControl
 control ":HoaDon Controller\nClass" as hdControl
 control ":PhieuMuaXe Controller\nClass" as pmxControl
 entity ":Xe Entity\nClass" as xe
 entity ":KhachHang Entity\nClass" as kh
-entity ":MuaBan Entity\nClass" as mb
 entity ":HoaDon Entity\nClass" as hd
 entity ":PhieuMuaXe Entity\nClass" as pmx
 
@@ -40,25 +38,25 @@ alt Khách hàng mua lần đầu
     khControl --> ui-- : Trả về thông tin khách hàng
     ui --> NhanVien : Hiển thị thông tin khách hàng
 end
-NhanVien -> ui : Chọn khách hàng
-ui -> mbControl++ : Gửi yêu cầu tạo mua bán
-mbControl -> mb++ : Tạo mua bán
-mb --> mbControl-- : Trả về mua bán
+NhanVien -> ui : Chọn khách hàng và cập nhật thanh toán
+ui -> pmxControl++ : Gửi yêu cầu cập nhật phiếu mua xe
+pmxControl -> pmx++ : Cập nhật phiếu mua xe
+pmx --> pmxControl-- : Trả về thông báo
 par
-    mbControl -> xeControl++ : Gửi yêu cầu cập nhật trạng thái đã bán của xe
-    mbControl++
-    xeControl -> xe++ : Cập nhật trạng thái đã bán của xe
+    pmxControl -> xeControl++ : Gửi yêu cầu cập nhật số lượng xe
+    pmxControl++
+    xeControl -> xe++ : Cập nhật số lượng xe
     xe --> xeControl-- : Trả về thông báo
-    xeControl--> mbControl-- : Trả về thông báo
+    xeControl--> pmxControl-- : Trả về thông báo
     else
     autonumber 23
-    mbControl -> khControl++ : Gửi yêu cầu cập nhật thông tin tích điểm
+    pmxControl -> khControl++ : Gửi yêu cầu cập nhật thông tin tích điểm
     khControl -> kh++ : Cập nhật thông tin tích điểm
     kh --> khControl-- : Trả về thông báo
-    khControl--> mbControl-- : Trả về thông báo
-    mbControl--
+    khControl--> pmxControl-- : Trả về thông báo
+    pmxControl--
 end
-mbControl --> ui-- : Trả về mua bán
-ui --> NhanVien : Hiển thị mua bán
+pmxControl --> ui-- : Trả về thông báo
+ui --> NhanVien : Hiển thị phiếu mua xe
 
 @enduml

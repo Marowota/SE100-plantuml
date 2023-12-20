@@ -1,0 +1,80 @@
+@startuml Activity
+
+title Mua xe trực tiếp
+skin rose
+
+|Nhân viên|
+start
+: Tạo phiếu mua xe;
+|User Interface|
+: Gửi yêu cầu tạo phiếu mua xe;
+|PhieuMuaXe Controller|
+: Tạo phiếu mua xe;
+|Database|
+: Trả về phiếu mua xe;
+|PhieuMuaXe Controller|
+: Trả về phiếu mua xe;
+|User Interface|
+: Hiển thị phiếu mua xe;
+|Nhân viên|
+: Nhập thông tin hóa đơn;
+|User Interface|
+: Gửi yêu cầu tạo hóa đơn;
+|HoaDon Controller|
+: Tạo hóa đơn;
+|Database|
+: Trả về hóa đơn;
+|HoaDon Controller|
+: Trả về hóa đơn;
+|User Interface|
+: Hiển thị hóa đơn;
+|Nhân viên|
+if (Khách hàng mua lần đầu) then (Sai)
+else (Đúng)
+: Nhập thông tin khách hàng;
+|KhachHang Controller|
+: Tạo thông tin khách hàng;
+|Database|
+: Trả về thông tin khách hàng;
+|KhachHang Controller|
+: Trả về thông tin khách hàng;
+|User Interface|
+: Hiển thị thông tin khách hàng;
+|Nhân viên|
+endif
+: Chọn khách hàng và cập nhật thanh toán;
+|User Interface|
+: Gửi yêu cầu cập nhật phiếu mua xe;
+|PhieuMuaXe Controller|
+: Cập nhật phiếu mua xe;
+|Database|
+: Trả về thông báo;
+|PhieuMuaXe Controller|
+split
+: Gửi yêu cầu cập nhật tích điểm;
+|KhachHang Controller|
+: Cập nhật tích điểm;
+|Database|
+: Trả về thông báo;
+|KhachHang Controller|
+: Trả về thông báo;
+|PhieuMuaXe Controller|
+: Trả về thông báo;
+split again
+: Gửi yêu cầu cập nhật số lượng xe;
+|Xe Controller|
+: Cập nhật số lượng xe;
+|Database|
+: Trả về thông báo;
+|Xe Controller|
+: Trả về thông báo;
+|PhieuMuaXe Controller|
+: Trả về thông báo;
+end split
+: Trả về thông báo;
+|User Interface|
+: Hiển thị thông báo;
+|Nhân viên|
+stop
+
+@enduml

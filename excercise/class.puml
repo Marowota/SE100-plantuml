@@ -7,14 +7,13 @@ skinparam linetype polyline
 hide circle
 scale 3
 
-class LoaiXeDap {
+class LoaiXe {
     - id: int
-    - tenXe: string
     - dongXe: string
     - nuocSanXuat: string
 }
 
-class PhieuNhapXeDap{
+class PhieuNhapXe{
     - id: int
     - ngayNhap: date
     - giaNhap: string
@@ -30,27 +29,32 @@ class DayKho {
 
 class XeDap {
     - id: int
-    - idLoaiXeDap: int
-    - idNhapXeDap: int
+    - tenXe: string
+    - idLoaiXe: int
+    - idNhapXe: int
     - idDay: int
     - trangThai: string
     - mucGia: int
+    - soLuongConLai: int
 }
 
 class PhieuDatMua {
     - id: int
-    - idXe: int
+    - loaiXe: string
+    - tenXe: string
+    - idKhachHang: int
     - ngayNhan: date
     - hinhThucGiaoHang: string
     - diaChi: string
 }
 
-class PhieuMuaHang {
+class PhieuMuaXe {
     - id: int
-    - idXe: int
-    - ngayNhan: date
+    - idKhachHang: int
+    - ngayNhanXe: date
     - hinhThucGiaoHang: string
-    - diaChi: string
+    - diaChiKhachHang: string
+    - idHoaDon: int
 }
 
 class HoaDon {
@@ -63,26 +67,30 @@ class ChiTietHoaDon {
     - idHoaDon: int
     - idXe: int
     - soLuong: int
+    - donGia: int
 }
 
 class PhieuDangKiDoiTra {
     - id: int
     - idKhachHang: int
-    - tenSanPham: string
+}
+
+class ChiTietDoiTra {
+    - id: int
+    - idPhieuDoiTra: int
+    - loaiXe: string
+    - tenXe: string
+    - soLuong: int
     - moTaHienTrang: string
     - linkHinhMinhHoa: string
     - hinhThucDoiTra: string
-    - idXeMuonDoi: int
 }
 
-class ThongTinChoThue {
+class PhieuThueXe {
     - id: int
     - idKhachHang: int
-    - idXeChoThue: int
-    - ngayNhanXe: date
-    - soNgayThue: int
+    - ngayThueXe: date
     - linkAnhChupCCCD: string
-    - chiPhiSuaChua: int
 }
 
 class ThongTinKhachHang{
@@ -93,30 +101,41 @@ class ThongTinKhachHang{
     - soDiemTich: int
 }
 
-class DanMucGiamGia {
+class DanhMucGiamGia {
     - id: int
     - soDiem: int
     - mucGiamGia: int
 }
 
-LoaiXeDap <|-- XeDap
-ChiTietHoaDon "*"--*"1" HoaDon
-PhieuNhapXeDap "1"--"*" XeDap
-DayKho "1"--"*" XeDap
-XeDap "1"--"*" ChiTietHoaDon
-XeDap "1"--"*" PhieuDangKiDoiTra
-ThongTinKhachHang "1"--"*" PhieuDangKiDoiTra
-XeDap "1"--"*" PhieuMuaHang
-XeDap "1"--"*" PhieuDatMua
-ThongTinChoThue "*"--"1" ThongTinKhachHang
-ThongTinChoThue "*"--"1" XeDap
+class ChiTietNhapXe {
+    - id: int
+    - idPhieuNhapXe: int
+    - idXe: int
+    - soLuong: int
+}
 
+class ChiTietThueXe {
+    - id: int
+    - idPhieuThueXe: int
+    - idXe: int
+    - soLuong: int
+    - giaThue: int
+    - thoiGianThue: int
+    - chiPhiPhatSinh: int
+}
 
-
-
-
-
-
-
-
+LoaiXe "1" -left- "*" XeDap
+PhieuNhapXe "1" -- "*" ChiTietNhapXe
+ChiTietNhapXe "1" -- "*" XeDap
+XeDap "*" -- "1" DayKho
+XeDap "*" -- "*" ChiTietThueXe
+ChiTietThueXe "*" -- "1" PhieuThueXe
+PhieuThueXe "*" -- "1" ThongTinKhachHang
+PhieuMuaXe "*" -- "1" ThongTinKhachHang
+PhieuMuaXe "1" -up- "1" HoaDon
+HoaDon "1" -right- "*" ChiTietHoaDon
+ChiTietHoaDon "1" -right- "*" XeDap
+ThongTinKhachHang "1" -right- "*" PhieuDatMua
+ThongTinKhachHang "1" -left- "*" PhieuDangKiDoiTra
+PhieuDangKiDoiTra "1" -up- "*" ChiTietDoiTra 
 @enduml
