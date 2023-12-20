@@ -1,0 +1,69 @@
+@startuml MyBicycle
+
+left to right direction
+
+actor "Chủ của hàng" as owner
+actor "Khách hàng" as customer
+actor "Nhân viên" as staff
+
+rectangle MyBicycle {
+    usecase "Trưng bày" as trungBay
+    usecase "Nhập xe" as nhapXe
+    usecase "Bán xe" as banXe
+    usecase "Thuê xe" as thueXe
+    usecase "Mua xe" as muaXe
+    usecase "Trả xe" as traXe
+    usecase "Đổi xe" as doiXe
+    usecase "Đăng nhập" as dangNhap
+    usecase "Đăng ký" as dangKy
+    usecase "Tạo phiếu mua hàng" as taoPhieuMuaHang
+    usecase "Tạo hóa đơn" as taoHoaDon
+}
+
+owner ---> (nhapXe)
+owner --> (banXe)
+owner ---> (trungBay)
+
+(thueXe) <--- customer
+(muaXe) <--- customer
+(traXe) <--- customer
+(doiXe) <--- customer
+(dangKy) <-- customer
+(dangNhap) <--- customer
+
+staff ---> (taoPhieuMuaHang)
+staff ---> (taoHoaDon)
+
+
+@enduml
+```
+left to right direction
+actor "Chủ của hàng" as owner
+actor "Khách hàng" as customer
+actor "Nhân viên" as staff
+rectangle MyBicycle {
+    usecase "Trưng bày" as trungBay
+    usecase "Nhập xe" as nhapXe
+    usecase "Bán xe" as banXe
+    usecase "Thuê xe" as thueXe
+    usecase "Mua xe" as muaXe
+    usecase "Trả xe" as traXe
+    usecase "Đổi xe" as doiXe
+    usecase "Đăng nhập" as dangNhap
+    usecase "Đăng ký" as dangKy
+    usecase "Tạo phiếu mua hàng" as taoPhieuMuaHang
+    usecase "Tạo hóa đơn" as taoHoaDon
+}
+owner ---> (nhapXe)
+owner --> (banXe)
+owner ---> (trungBay)
+(thueXe) <--- customer
+(muaXe) <--- customer
+(traXe) <--- customer
+(doiXe) <--- customer
+(dangKy) <-- customer
+(dangNhap) <--- customer
+staff ---> (taoPhieuMuaHang)
+staff ---> (taoHoaDon)
+@enduml
+```
