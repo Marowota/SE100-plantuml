@@ -21,6 +21,8 @@ rectangle MyBicycle {
     usecase "Tạo hóa đơn" as taoHoaDon
     usecase "Cất kho" as catKho
     usecase "Nhập nhiều xe" as nhapNhieuXe
+    usecase "Tích điểm" as tichDiem
+    
 }
 
 owner ---> (nhapXe)
@@ -29,17 +31,18 @@ owner ---> (nhapXe)
 owner ---> (trungBay)
 (trungBay) <.. (catKho): <<extend>>
 
-(muaXe) ...> (banXe): <<include>>
-(thueXe) <--- customer
+' (taoPhieuMuaHang) <.. (muaXe): <<include>>
+(thueXe) <-- customer
+(taoHoaDon) <.. (thueXe): <<include>>
+(taoHoaDon) <. (tichDiem): <<include>>
 (muaXe) <--- customer
-(doiTraXe) <--- customer
-(catKho) <.. (doiTraXe): <<extend>>
-(taoHoaDon) <.. (doiTraXe): <<extend>>
+(doiTraXe) <-- customer
+(catKho) ..> (doiTraXe): <<extend>>
+(taoHoaDon) ..> (doiTraXe): <<extend>>
 (dangKy) <--- customer
 (dangNhap) <--- customer
 
 (taoPhieuMuaHang) -[hidden]-> (muaXe)
-(taoPhieuMuaHang) -[hidden]-> (thueXe)
 (taoPhieuMuaHang) -[hidden]-> (dangNhap)
 (taoPhieuMuaHang) -[hidden]-> (dangKy)
 
