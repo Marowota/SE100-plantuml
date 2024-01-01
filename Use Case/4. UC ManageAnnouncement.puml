@@ -1,0 +1,27 @@
+@startuml ManageAnnouncement
+
+skin rose
+left to right direction
+
+actor "Academic Affair" as aa
+actor "Teacher" as t
+
+rectangle "Manage Announcement" as manageAnnouncement {
+    usecase "Create Announcement" as createAnnouncement
+    usecase "View Announcement" as viewAnnouncement
+    usecase "Update Announcement" as updateAnnouncement
+    usecase "Delete Announcement" as deleteAnnouncement
+   
+}
+
+aa -- createAnnouncement
+aa -- updateAnnouncement
+aa -- deleteAnnouncement
+aa -- viewAnnouncement
+
+createAnnouncement -- t
+updateAnnouncement -- t
+deleteAnnouncement -- t
+viewAnnouncement -- t
+
+@enduml

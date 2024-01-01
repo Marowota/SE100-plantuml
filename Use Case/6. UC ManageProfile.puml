@@ -1,0 +1,16 @@
+@startuml
+
+skin rose
+left to right direction
+
+actor "User" as user
+
+rectangle "Manage profile" {
+    usecase "View profile" as viewProfile
+    usecase "Update profile" as updateProfile
+}
+
+user -- viewProfile
+user -- updateProfile
+
+@enduml
