@@ -1,0 +1,31 @@
+@startuml SignIn
+
+skin rose
+hide footbox
+
+title Sign in
+
+actor User as u
+boundary "User Interface\nClass" as ui
+control "Authenciation Controller\nClass" as authenController
+entity "Account\nClass" as account
+
+autonumber
+u++
+u->ui++ : Enter username and password
+ui->authenController++ : Send username and password
+authenController->account++ : Check username and password
+alt username and password are correct
+    account-->authenController : Return true
+    authenController-->ui : Return true
+    ui-->u : Show main page
+else username and password are incorrect
+    autonumber 4
+    account-->authenController-- : Return false
+    authenController-->ui-- : Return false
+    ui-->u-- : Show error message
+end
+
+u--
+
+@enduml

@@ -1,0 +1,23 @@
+@startuml ViewScore
+
+skin rose
+hide footbox
+
+title View score
+
+actor "Academic affair/\nTeacher" as a
+boundary "Academic Affair/Teacher\nInterface Class" as aInterface
+control "Score Controller\nClass" as scoreController
+entity "Implementation\nClass" as implementation
+
+autonumber
+a++
+a->aInterface++: Navigate to score page
+aInterface->scoreController++: Request score
+scoreController->implementation++: Get score list
+implementation-->scoreController--: Return score list
+scoreController-->aInterface--: Return score list
+aInterface-->a--: Display score
+a--
+
+@enduml

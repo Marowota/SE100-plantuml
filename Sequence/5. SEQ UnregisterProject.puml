@@ -1,0 +1,35 @@
+@startuml UnregisterProject
+
+skin rose
+hide footbox
+
+title Unregister project
+
+actor Student as s
+boundary "Student Interface\nClass" as sInterface
+control "Project Controller\nClass" as pController
+entity "Project\nClass" as p
+entity "Implementation\nClass" as i
+
+autonumber
+s++
+s->sInterface++ : Navigate to profile page
+sInterface-->s-- : Display profile page
+s->sInterface++ : Click "Cancel register" button
+sInterface-->s-- : Display confirmation dialog
+alt student confirmed
+    s->sInterface++ : Click "Yes, I'm sure!" button
+    sInterface->pController++ : Call unregister project function
+    pController->p++ : Update project information
+    p-->pController-- : Return updated project information
+    pController->i++ : Update implementation information
+    i-->pController-- : Return updated implementation information
+    pController-->sInterface-- : Return updated project and\nimplementation information
+    sInterface-->s : Display project page
+else student not confirmed
+    autonumber 5
+    s->sInterface : Click "Cancel" button
+    sInterface-->s-- : Display profile page
+end
+s--
+@enduml

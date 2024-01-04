@@ -4,7 +4,7 @@ left to right direction
 actor Admin
 rectangle "Manage Account" as manageAccount {
     usecase "Create Account" as createAccount
-     usecase "View Account" as viewAccount
+    usecase "View Account" as viewAccount
     usecase "Update Account" as updateAccount
     usecase "Delete Account" as deleteAccount
     usecase "Add new class" as addNewClass
@@ -15,6 +15,6 @@ Admin -- updateAccount
 Admin -- deleteAccount
 Admin -- viewAccount
 
-createAccount <-- addNewClass :  <<extends>>
+createAccount <.. addNewClass :  <<extends>>
 
 @enduml

@@ -1,0 +1,28 @@
+@startuml ViewProjectList
+
+skin rose
+left to right direction
+
+actor "Academic Affair" as aa
+actor "Teacher" as t
+actor "Student" as s
+
+rectangle "View project list" {
+    usecase "Export project list" as exportProjectList
+    usecase "Filter by register time" as filterByRegisterTime
+    usecase "Filter by own project" as filterByOwnProject
+    usecase "Search project" as searchProject
+    usecase "Register project" as registerProject
+}
+
+aa -- exportProjectList
+aa -- filterByRegisterTime
+aa -- searchProject
+exportProjectList -- t
+filterByRegisterTime -- t
+filterByOwnProject -- t
+searchProject -- t
+s -- searchProject
+s -- registerProject
+
+@enduml

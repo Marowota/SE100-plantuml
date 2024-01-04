@@ -1,0 +1,30 @@
+@startuml ManageScore
+
+skin rose
+left to right direction
+
+actor "Academic affair" as aa
+actor "Teacher" as t
+actor "Student" as s
+
+
+rectangle "Manage score" as ms {
+    usecase "Update student score" as updateStudentScore
+    usecase "Export score table" as exportScoreTable
+    usecase "View student score" as viewStudentScore
+    usecase "View own score" as viewOwnScore
+    usecase "View profile" as viewProfile
+}
+
+aa -- viewStudentScore
+aa -- exportScoreTable
+
+s -- viewOwnScore
+
+viewStudentScore -- t
+updateStudentScore -- t
+exportScoreTable -- t
+
+viewOwnScore .right.> viewProfile: <<include>>
+
+@enduml

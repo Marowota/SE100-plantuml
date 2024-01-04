@@ -1,4 +1,4 @@
-@startuml UC ManageAnalyzeAndReportInfo
+@startuml ManageAnalyzeAndReportInfo
 skin rose
 left to right direction
 actor "Academic affair" as aff
@@ -6,6 +6,6 @@ rectangle "Manage analyze&report information" {
   usecase "View analyze" as ViewAnalyze
   usecase "Export report" as ExportReport
 }
-aff --> ViewAnalyze
-aff --> ExportReport
+aff -- ViewAnalyze
+ExportReport .up.> ViewAnalyze: <<extends>>
 @enduml

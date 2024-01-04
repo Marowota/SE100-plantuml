@@ -1,0 +1,19 @@
+@startuml ViewAnnouncementList
+
+skin rose
+left to right direction
+
+actor "Academic Affair" as aa
+actor "Teacher" as t
+actor "Student" as s
+
+rectangle "View announcement list" {
+    usecase "Search announcement" as searchAnnouncement
+}
+
+
+aa -- searchAnnouncement
+searchAnnouncement -- t
+s -- searchAnnouncement
+
+@enduml

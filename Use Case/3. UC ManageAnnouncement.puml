@@ -5,22 +5,23 @@ left to right direction
 
 actor "Academic Affair" as aa
 actor "Teacher" as t
+actor "Student" as s
 
-rectangle "Manage announcement" as manageAnnouncement {
+rectangle "Manage announcement" {
     usecase "Create announcement" as createAnnouncement
-    usecase "View announcement info" as viewAnnouncement
+    usecase "View announcement info" as viewAnnouncementInfo
     usecase "Update announcement" as updateAnnouncement
     usecase "Delete announcement" as deleteAnnouncement
 }
 
 aa -- createAnnouncement
+aa -- viewAnnouncementInfo
 aa -- updateAnnouncement
 aa -- deleteAnnouncement
-aa -- viewAnnouncement
-
 createAnnouncement -- t
+viewAnnouncementInfo -- t
 updateAnnouncement -- t
 deleteAnnouncement -- t
-viewAnnouncement -- t
+viewAnnouncementInfo -- s
 
 @enduml

@@ -4,19 +4,17 @@ skin rose
 left to right direction
 
 actor "Academic affair" as aa
-actor "Teacher" as t
 
 rectangle "Manage register time" {
     usecase "Create register time" as createRegisterTime
-    usecase "View register time" as viewRegisterTime
+    usecase "View register time info" as viewRegisterTime
+    usecase "Update register time" as updateRegisterTime
     usecase "Delete register time" as deleteRegisterTime
 }
 
 aa -- createRegisterTime
 aa -- viewRegisterTime
 aa -- deleteRegisterTime
-createRegisterTime -- t
-viewRegisterTime -- t
-deleteRegisterTime -- t
+aa -- updateRegisterTime
 
 @enduml

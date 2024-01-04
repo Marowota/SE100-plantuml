@@ -1,0 +1,41 @@
+@startuml RegisterProject
+
+skin rose
+hide footbox
+
+title Register project
+
+actor Student as s
+boundary "Student Interface\nClass" as sInterface
+control "Project Controller\nClass" as pController
+entity "Project\nClass" as p
+entity "Implementation\nClass" as i
+
+autonumber
+s++
+s->sInterface++ : Navigate to project page
+sInterface-->s-- : Display project page
+s->sInterface++ : Click "Register" button
+sInterface-->s-- : Display confirmation dialog
+alt student confirm
+    s->sInterface++ : Click "Yes, register!" button
+    sInterface->pController++ : Call register project function
+    alt project is full or student already registered
+        pController-->sInterface : Display error message
+        sInterface-->s : Display error message
+    else project is not full and student not registered
+        autonumber 7
+        pController->p++ : Update project information
+        p-->pController-- : Return updated project information
+        pController->i++ : Update implementation information
+        i-->pController-- : Return updated\nimplementation information
+        pController-->sInterface-- : Return updated project\nand implementation information
+        sInterface-->s : Display project page
+    end
+else student cancel
+    autonumber 5
+    s->sInterface : Click "Cancel" button
+    sInterface-->s-- : Display project page
+end
+
+@enduml

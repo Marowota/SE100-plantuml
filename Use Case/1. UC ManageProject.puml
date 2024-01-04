@@ -1,25 +1,27 @@
-@startuml
+@startuml ManageProject
 
 skin rose
 left to right direction
 
 actor "Academic Affair" as aa
 actor "Teacher" as t
+actor "Student" as s
 
 rectangle "Manage project" {
     usecase "Create project" as createProject
-    usecase "View project" as viewProject
+    usecase "View project info" as viewProjectInfo
     usecase "Update project" as updateProject
     usecase "Delete project" as deleteProject
 }
 
 aa -- createProject
-aa -- viewProject
+aa -- viewProjectInfo
 aa -- updateProject
 aa -- deleteProject
 createProject -- t
-viewProject -- t
+viewProjectInfo -- t
 updateProject -- t
 deleteProject -- t
+viewProjectInfo -- s
 
 @enduml

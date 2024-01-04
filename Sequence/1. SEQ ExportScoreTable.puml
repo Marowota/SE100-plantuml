@@ -1,0 +1,24 @@
+@startuml ExportScoreTable
+
+skin rose
+hide footbox
+
+title Export score table
+
+actor "Academic Affair/\nTeacher" as a
+boundary "Academic Affair/Teacher \nInterface Class" as ui
+control "Score Controller\nClass" as scoreController
+entity "Implementation\nClass" as implemetation
+
+autonumber
+a++
+a -> ui++ : Navigate to project page
+ui --> a--: Show project page
+a -> ui++ : Click "Export" button
+ui -> scoreController++ : Call export score function
+scoreController -> implemetation++ : Get score list
+implemetation --> scoreController-- : Return score list
+scoreController --> ui-- : Create and return excel file
+ui --> a-- : Return excel file
+u--
+@enduml
