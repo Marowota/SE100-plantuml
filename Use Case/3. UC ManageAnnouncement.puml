@@ -12,6 +12,8 @@ rectangle "Manage announcement" {
     usecase "View announcement info" as viewAnnouncementInfo
     usecase "Update announcement" as updateAnnouncement
     usecase "Delete announcement" as deleteAnnouncement
+    
+    usecase "Search announcement" as searchAnnouncement
 }
 
 aa -- createAnnouncement
@@ -23,5 +25,9 @@ viewAnnouncementInfo -- t
 updateAnnouncement -- t
 deleteAnnouncement -- t
 viewAnnouncementInfo -- s
+
+aa -- searchAnnouncement
+searchAnnouncement -- t
+s -- searchAnnouncement
 
 @enduml
