@@ -1,67 +1,52 @@
 @startuml UC Main
 skin rose 
 left to right direction
-skinparam Linetype polyline
+
+' skinparam Linetype polyline
+
 actor Admin as a
 actor Student as s
-actor "Academic affair" as aff
+actor "Academic affair" as aa
 actor Teacher as t
 rectangle "Project Management System" {
-  usecase "Manage account" as ManageAccount <<CRUD>>
-  usecase "Manage analyze&report infomation" as ManageAnalyze
-  usecase "Manage announcement" as ManageAnnouncement <<CRUD>>
-  usecase "Manage project" as ManageProject <<CRUD>>
-  usecase "Sign in" as Signin
-  usecase "Register project" as RegisterProject
-  usecase "Unregister project" as UnregisterProject
-  usecase "Manage register time" as ManageRegisterTime <<CRUD>>
+  usecase "Manage account" as ManageAccount
+
+  usecase "Manage announcement" as ManageAnnouncement
+  usecase "Manage project" as ManageProject
+
+  usecase "Manage registered project" as ManageRegistered
   usecase "Manage profile" as ManageProfile
-  usecase "View project list" as ViewProjectList
-  usecase "View announcement list" as ViewAnnouncementList
   usecase "Manage score" as ManageScore
-  usecase "View account list" as ViewAccountList
-  usecase "View profile" as ViewProfile
-  usecase "Submit project link" as SubmitProjectLink
+  
+  usecase "Manage authorization" as ManageAuthorization
+  usecase "Manage analyze information" as ManageAnalyze
 }
 
-aff ---- ManageProject
-ManageProject ---- t
-ManageProject ---- s
+a -- ManageAccount
+aa -- ManageAccount
+ManageAccount - s
+ManageAccount -- t
 
-aff ---- ManageAnnouncement
-ManageAnnouncement ---- t
-ManageAnnouncement ---- s
+a -- ManageAuthorization
+a -- ManageProfile
 
-aff ---- ManageAnalyze
+aa -- ManageAnalyze
+aa -- ManageAnnouncement
+aa -- ManageProject
+aa -- ManageProfile
+aa -- ManageScore
 
-aff ---- ManageProfile
-ManageProfile ---- t
-ManageProfile ---- s
-a ---- ManageProfile
+ManageProfile -- s
+ManageRegistered -- s
 
-aff ---- Signin
-Signin ---- t
-Signin ---- s
-a ---- Signin
+ManageAnnouncement -- t
+ManageProject -- t
+ManageProfile -- t
+ManageScore -- t
 
-aff ---- ManageScore
-ManageScore ---- t
-ManageScore ---- s
 
-s ---- RegisterProject
-s ---- UnregisterProject
 
-aff ---- ManageRegisterTime
 
-a ---- ManageAccount
 
-SubmitProjectLink ---- s
 
-ViewProjectList <.. ManageProject: <<include>>
-ViewAnnouncementList <.. ManageAnnouncement: <<include>>
-RegisterProject ..> ViewProjectList: <<include>>
-ManageRegisterTime ..> ViewProjectList: <<include>>
-ManageAccount ..> ViewAccountList: <<include>>
-UnregisterProject ..> ViewProfile: <<include>>
-SubmitProjectLink ..> ViewProfile: <<include>>
 @enduml

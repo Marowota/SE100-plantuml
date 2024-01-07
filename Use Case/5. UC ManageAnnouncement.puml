@@ -9,25 +9,27 @@ actor "Student" as s
 
 rectangle "Manage announcement" {
     usecase "Create announcement" as createAnnouncement
-    usecase "View announcement info" as viewAnnouncementInfo
+    usecase "View announcement list" as ViewAnnouncementList
+    usecase "View announcement detail" as viewAnnouncementDetail
     usecase "Update announcement" as updateAnnouncement
     usecase "Delete announcement" as deleteAnnouncement
-    
     usecase "Search announcement" as searchAnnouncement
 }
 
 aa -- createAnnouncement
-aa -- viewAnnouncementInfo
+aa -- ViewAnnouncementList
 aa -- updateAnnouncement
 aa -- deleteAnnouncement
 createAnnouncement -- t
-viewAnnouncementInfo -- t
+ViewAnnouncementList -- t
 updateAnnouncement -- t
 deleteAnnouncement -- t
-viewAnnouncementInfo -- s
+ViewAnnouncementList -- s
 
 aa -- searchAnnouncement
 searchAnnouncement -- t
 s -- searchAnnouncement
 
+ViewAnnouncementList <. viewAnnouncementDetail: <<extend>>
+searchAnnouncement .> ViewAnnouncementList: <<include>>
 @enduml

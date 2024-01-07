@@ -1,0 +1,20 @@
+@startuml ManageProfile
+
+skin rose
+left to right direction
+
+actor "User" as user
+
+rectangle "Manage account" {
+    usecase "Sign in" as viewProfile
+    usecase "Sign out" as updateProfile
+    usecase "Change username" as changeUsername
+    usecase "Change password" as changePassword
+}
+
+user -- viewProfile
+user -- updateProfile
+user -- changeUsername
+user -- changePassword
+
+@enduml

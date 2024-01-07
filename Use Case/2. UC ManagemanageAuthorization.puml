@@ -1,0 +1,28 @@
+@startuml ManageAccount
+skin rose
+left to right direction
+actor Admin
+rectangle "Manage Authorization" as manageAuthorization {
+    usecase "Create Account" as createAccount
+    usecase "View Account list" as ViewAccountList
+    usecase "Search Account" as searchAccount
+    usecase "Update Account" as updateAccount
+    usecase "Delete Account" as deleteAccount
+    usecase "Add new class" as addNewClass
+    usecase "Set user role" as setUserRole
+}
+
+Admin -- createAccount
+Admin -- updateAccount
+Admin -- deleteAccount
+Admin -- ViewAccountList
+Admin -- searchAccount
+
+createAccount <.. addNewClass:  <<extend>>
+createAccount ..> setUserRole: <<include>>
+updateAccount <.. setUserRole: <<extend>>
+searchAccount .> ViewAccountList: <<include>>
+
+
+
+@enduml

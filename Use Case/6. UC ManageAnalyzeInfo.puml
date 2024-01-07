@@ -2,7 +2,7 @@
 skin rose
 left to right direction
 actor "Academic affair" as aff
-rectangle "Manage analyze&report information" {
+rectangle "Manage analyze information" {
   usecase "View analyze" as ViewAnalyze
   usecase "Export report" as ExportReport
 }

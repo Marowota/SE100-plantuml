@@ -1,0 +1,27 @@
+@startuml ManageAnnouncement
+
+skin rose
+left to right direction
+
+actor "Student" as s
+
+rectangle "Manage registered project" {
+    usecase "View project list" as ViewProjectList
+    usecase "Search project" as SearchProject
+    usecase "View registered project" as ViewRegisteredProject
+    usecase "View score" as ViewScore
+    usecase "Submit project" as SubmitProject
+    usecase "Register project" as RegisterProject
+    usecase "Unregister project" as UnregisterProject
+}
+
+s -- ViewProjectList
+s -- SearchProject
+s -- RegisterProject
+s -- UnregisterProject
+s -- ViewRegisteredProject 
+
+SearchProject .> ViewProjectList: <<include>> 
+ViewRegisteredProject <.. ViewScore: <<extend>>
+ViewRegisteredProject <.. SubmitProject: <<extend>>
+@enduml
